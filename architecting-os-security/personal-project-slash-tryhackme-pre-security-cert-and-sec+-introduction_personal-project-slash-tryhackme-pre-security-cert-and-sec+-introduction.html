@@ -33,9 +33,7 @@
 <div id="page_content">
 <div class="section read_only" id="page_section_0">
 <div class="section_content"><div class="doc-render">
-<p><strong>CIS3367 — Information Security</strong></p>
-<p><strong>Independent Study Documentation</strong></p>
-<p>April 2026</p>
+<h1>Independent Study Documentation</h1>
 <table>
 <colgroup>
 <col style="width: 29%"/>
@@ -54,7 +52,7 @@
 </tr>
 <tr class="even">
 <td>Course</td>
-<td>CIS3367 — Information Security</td>
+<td>CIS3367: Information Security</td>
 </tr>
 <tr class="odd">
 <td>Study Focus</td>
@@ -66,7 +64,7 @@
 </tr>
 <tr class="odd">
 <td>TryHackMe Certificate</td>
-<td>THM-ZS3OYN6WNX — Pre Security Learning Path</td>
+<td>THM-ZS3OYN6WNX: Pre Security Learning Path</td>
 </tr>
 <tr class="even">
 <td>Primary Resource</td>
@@ -78,19 +76,19 @@
 </tr>
 </tbody>
 </table>
-<h1 id="tryhackme-networking">TryHackMe — Networking</h1>
+<h1 id="tryhackme-networking">TryHackMe: Networking</h1>
 <h2 id="notes">Notes</h2>
 <p>Subnetting splits a network up into smaller segments, which allows more than 254 devices on one network and creates separation between them.</p>
 <p>ARP matches MAC addresses to IP addresses. IP addresses are not static; MAC addresses are. The protocol broadcasts a request on the local network to find which MAC owns a given IP.</p>
 <p>DHCP assigns IP addresses automatically using a four-step process: Discover, Offer, Request, Acknowledge (DORA).</p>
 <p>DNS translates domain names into IP addresses. Domain hierarchy goes from right to left: TLD (.com), then second-level domain (tryhackme), then subdomain (admin.tryhackme.com). Record types: A (IPv4), AAAA (IPv6), CNAME (alias), MX (mail), TXT (metadata).</p>
 <p>The OSI model is a 7-layer framework for understanding how data moves through a network. Each layer has a specific job. Data encapsulates as it moves down the stack, picking up headers at each layer, and de-encapsulates going back up on the receiving end.</p>
-<p>TCP is connection-based and uses a three-way handshake (SYN, SYN-ACK, ACK). It's reliable but slower. UDP has no handshake and no acknowledgement — it's faster and used for things like streaming and voice calls where some loss is acceptable.</p>
+<p>TCP is connection-based and uses a three-way handshake (SYN, SYN-ACK, ACK). It's reliable but slower. UDP skips the handshake and acknowledgement, so it's faster. It's used for things like streaming and voice calls where losing a little data isn't a big deal.</p>
 <p>Ports are numbered 0 to 65535. Ports below 1024 are well-known. Applications use standard ports so devices know what to expect: HTTP is 80, HTTPS is 443.</p>
 <p>Port forwarding opens specific ports on a router to make internal services reachable from outside the network. Firewalls still control whether traffic is actually allowed through those ports.</p>
 <p>Firewalls filter traffic based on where it's coming from, where it's going, what port it's using, and what protocol it's using.</p>
 <p>VPNs create an encrypted tunnel between devices over the internet so they can communicate securely as if they were on the same private network.</p>
-<p>Routers connect networks and pass data between them. Switches connect devices within a network — Layer 2 switches use MAC addresses, Layer 3 switches can also route using IP. VLANs allow devices on the same physical switch to be virtually separated into isolated networks.</p>
+<p>Routers connect networks and pass data between them. Switches connect devices within a network. Layer 2 switches use MAC addresses, Layer 3 switches can also route using IP. VLANs allow devices on the same physical switch to be virtually separated into isolated networks.</p>
 <h2 id="abbreviations">Abbreviations</h2>
 <table>
 <colgroup>
@@ -146,10 +144,10 @@
 </tr>
 </tbody>
 </table>
-<h1 id="tryhackme-how-the-web-works">TryHackMe — How the Web Works</h1>
+<h1 id="tryhackme-how-the-web-works">TryHackMe: How the Web Works</h1>
 <h2 id="notes-1">Notes</h2>
 <p>DNS is how website addresses get translated into IP addresses. When you visit a site your computer uses DNS to find the server's IP before anything else happens.</p>
-<p>HTTP is the protocol browsers use to communicate with web servers. HTTPS is the secure version — data is encrypted so it can't be read in transit, and you get assurance you're talking to the right server.</p>
+<p>HTTP is the protocol browsers use to communicate with web servers. HTTPS is the secure version. Data gets encrypted so it can't be read in transit, and you get some assurance you're actually talking to the right server.</p>
 <p>URLs are instructions for how to access a resource on the internet. HTTP methods define what you're doing: GET retrieves data, POST submits it, PUT updates it, DELETE removes it.</p>
 <p>Request headers carry extra information from the client to the server: Host tells the server which site you want, User-Agent identifies your browser, Cookies carry session data. Response headers come back from the server: Set-Cookie stores data on your machine, Content-Type tells the browser what it's receiving.</p>
 <p>Cookies are small pieces of data stored in the browser. Because HTTP is stateless, cookies let the server remember who you are between requests.</p>
@@ -207,7 +205,7 @@
 </tr>
 </tbody>
 </table>
-<h1 id="comptia-security-sy0-701-study-plan">CompTIA Security+ (SY0-701) — Study Plan</h1>
+<h1 id="comptia-security-sy0-701-study-plan">CompTIA Security+ (SY0-701): Study Plan</h1>
 <h2 id="overview">Overview</h2>
 <p>The TryHackMe Pre-Security path built a working foundation in networking and web concepts that maps directly into Security+ preparation. The networking module covers ground in Domain 3 (Security Architecture) around segmentation, firewalls, and VPNs. The web module covers Domain 2 (Threats, Vulnerabilities, and Mitigations) through HTML injection, sensitive data exposure, and WAF usage.</p>
 <p>The plan going forward is to work through Professor Messer’s SY0-701 course domain by domain, using the TryHackMe foundation as a starting point for the security-specific content.</p>
@@ -256,7 +254,7 @@
 <h2 id="next-steps">Next Steps</h2>
 <ul>
 <li><p>Complete Professor Messer SY0-701 video sections for Domain 1 and Domain 2, building on the networking and web concepts from TryHackMe.</p></li>
-<li><p>Continue on TryHackMe — Jr Penetration Tester path for hands-on practice with vulnerabilities covered in Domain 2.</p></li>
+<li><p>Continue on TryHackMe: Jr Penetration Tester path for hands-on practice with vulnerabilities covered in Domain 2.</p></li>
 <li><p>Work through Domains 3 and 4 covering security architecture, incident response, and security operations.</p></li>
 <li><p>Begin timed practice exams once all five domains are covered.</p></li>
 </ul>
@@ -284,31 +282,31 @@
 <td>Complete</td>
 </tr>
 <tr class="even">
-<td>Security+ Domain 1 — General Concepts</td>
+<td>Security+ Domain 1: General Concepts</td>
 <td>Messer SY0-701 + THM</td>
 <td>Apr 2026</td>
 <td>In Progress</td>
 </tr>
 <tr class="odd">
-<td>Security+ Domain 2 — Threats &amp; Vulns</td>
+<td>Security+ Domain 2: Threats &amp; Vulns</td>
 <td>Messer SY0-701 + THM</td>
 <td>Apr 2026</td>
 <td>In Progress</td>
 </tr>
 <tr class="even">
-<td>Security+ Domain 3 — Architecture</td>
+<td>Security+ Domain 3: Architecture</td>
 <td>Messer SY0-701</td>
 <td>Upcoming</td>
 <td>Planned</td>
 </tr>
 <tr class="odd">
-<td>Security+ Domain 4 — Operations</td>
+<td>Security+ Domain 4: Operations</td>
 <td>Messer SY0-701</td>
 <td>Upcoming</td>
 <td>Planned</td>
 </tr>
 <tr class="even">
-<td>Security+ Domain 5 — Program Mgmt</td>
+<td>Security+ Domain 5: Program Mgmt</td>
 <td>Messer SY0-701</td>
 <td>Upcoming</td>
 <td>Planned</td>
