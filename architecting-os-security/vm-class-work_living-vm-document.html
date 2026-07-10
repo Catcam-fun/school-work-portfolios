@@ -85,37 +85,28 @@
 <h3 id="network-connectivity">Network Connectivity</h3>
 <p>Ran ipconfig /all on SERVER25 to confirm DHCP assigned an IP, gateway, and DNS servers.</p>
 <p><img src="assets/vm-doc/image1.png"/></p>
-<p><em>Figure 1 - SERVER25 ipconfig /all confirming DHCP-assigned IP, gateway, and DNS configuration</em></p>
 <h3 id="active-directory-domain-services-installation">Active Directory Domain Services Installation</h3>
 <p>AD DS was installed through Server Manager. Selected the role, added the required features when prompted, and let it install.</p>
 <p><img src="assets/vm-doc/image2.png"/></p>
-<p><em>Figure 2 - Server Roles wizard with Active Directory Domain Services selected</em></p>
 <h3 id="promoting-to-domain-controller">Promoting to Domain Controller</h3>
 <p>After install, promoted the server to a domain controller by creating a new forest named dentist.local. Set a DSRM recovery password when prompted.</p>
 <p><img src="assets/vm-doc/image3.png"/></p>
-<p><em>Figure 3 - AD DS Configuration Wizard showing Add a new forest with dentist.local as the root domain</em></p>
 <h3 id="post-reboot-confirmation">Post-Reboot Confirmation</h3>
 <p>Server rebooted automatically after promotion. Server Manager came back showing AD DS and DNS both installed and green.</p>
 <p><img src="assets/vm-doc/image4.png"/></p>
-<p><em>Figure 4 - Server Manager dashboard confirming AD DS and DNS roles installed and running</em></p>
 <h3 id="active-directory-users-and-computers">Active Directory Users and Computers</h3>
 <p>Opened Active Directory Users and Computers from Server Manager &gt; Tools. The dentist.local domain was visible with its default folders.</p>
 <p><img src="assets/vm-doc/image5.png"/></p>
-<p><em>Figure 5 - Active Directory Users and Computers showing the dentist.local domain tree</em></p>
 <h3 id="domain-user-account-creation">Domain User Account Creation</h3>
 <p>Created three user accounts for the dentist office scenario. Hit a naming conflict on Admin - 'admin' is reserved by the system so I had to use 'adminuser' as the logon name. Password complexity was enforced throughout.</p>
 <p><img src="assets/vm-doc/image6.png"/></p>
-<p><em>Figure 6 - New User wizard showing the Admin account being created with logon name adminuser@dentist.local</em></p>
 <p><img src="assets/vm-doc/image7.png"/></p>
-<p><em>Figure 7 - Active Directory Users and Computers showing all three domain accounts created: Admin, Adminuser, Dentist, and OfficeManager</em></p>
 <h3 id="inter-vm-dns-configuration">Inter-VM DNS Configuration</h3>
 <p>Ubuntu couldn't find dentist.local until I pointed its DNS at the Windows Server. Edited /etc/resolv.conf to add 10.21.28.244 as the nameserver. Without that, realm discover returns nothing.</p>
 <p><img src="assets/vm-doc/image8.png"/></p>
-<p><em>Figure 8 - /etc/resolv.conf on UBUNTU24 with SERVER25's IP (10.21.28.244) added as the primary nameserver</em></p>
 <h3 id="ubuntu-domain-discovery">Ubuntu Domain Discovery</h3>
 <p>After fixing DNS, realm discover found the domain and confirmed the machines could communicate. It also listed the packages still needed to complete the join.</p>
 <p><img src="assets/vm-doc/image9.png"/></p>
-<p><em>Figure 9 - realm discover dentist.local output on UBUNTU24 showing successful domain discovery</em></p>
 <h3 id="observations-troubleshooting">Observations &amp; Troubleshooting</h3>
 <p><strong>Ubuntu repos were broken:</strong> Ubuntu 24.10 is end-of-life so apt couldn't find packages. Fixed it by adding a sources file pointing to old-releases.ubuntu.com.</p>
 <p><strong>'admin' username was taken:</strong> AD already reserves an admin account so I had to use 'adminuser' as the logon name instead.</p>
@@ -142,44 +133,33 @@
 <p>Each VM was given two network adapters. Adapter 1 is NAT for internet access. Adapter 2 is set to Internal Network (named intnet) to create an isolated private network between the two VMs. Using an isolated internal network is more secure than letting the VMs share the same NAT network - it keeps domain traffic contained and separate from the internet-facing adapter.</p>
 <p>SERVER25's Ethernet 2 (the internal adapter) was given a static IP of 192.168.1.1 so Ubuntu always knows how to reach it. Ubuntu's internal adapter (enp0s8) was set to 192.168.1.2 with DNS pointing to 192.168.1.1.</p>
 <p><img src="assets/vm-doc/image10.png"/></p>
-<p><em>Figure 10 - SERVER25 Ethernet 2 static IP configuration: 192.168.1.1 / 255.255.255.0 with DNS pointing to itself</em></p>
 <h3 id="both-vms-running">Both VMs Running</h3>
 <p><img src="assets/vm-doc/image11.png"/></p>
-<p><em>Figure 11 - Ubuntu 24.04 desktop running in VirtualBox after successful installation</em></p>
 <h3 id="network-connectivity---server25">Network Connectivity - SERVER25</h3>
 <p>Ran ipconfig /all on the local SERVER25 to confirm adapter settings. Adapter 1 (NAT) received a DHCP address from VirtualBox. Adapter 2 (Internal) confirmed the static IP 192.168.1.1.</p>
 <p><img src="assets/vm-doc/image12.png"/></p>
-<p><em>Figure 12 - SERVER25 ipconfig /all on local VirtualBox VM showing NAT and internal network adapter settings</em></p>
 <h3 id="active-directory-domain-services-installation-1">Active Directory Domain Services Installation</h3>
 <p>Installed AD DS the same way as the CyberHub attempt - through Server Manager &gt; Add Roles and Features. Selected Active Directory Domain Services, added the required features, and let it install.</p>
 <p><img src="assets/vm-doc/image13.png"/></p>
-<p><em>Figure 13 - AD DS installation progress on local SERVER25 VM showing all components installing successfully</em></p>
 <h3 id="promoting-to-domain-controller-1">Promoting to Domain Controller</h3>
 <p>After install, clicked the yellow flag notification in Server Manager to promote the server to a domain controller. Created a new forest named dentist.local.</p>
 <p><img src="assets/vm-doc/image14.png"/></p>
-<p><em>Figure 14 - AD DS Configuration Wizard showing Add a new forest with dentist.local as the root domain name</em></p>
 <h3 id="post-reboot-confirmation-1">Post-Reboot Confirmation</h3>
 <p>Server rebooted automatically after promotion. Server Manager came back with AD DS and DNS both green, confirming the domain controller is running correctly.</p>
 <p><img src="assets/vm-doc/image15.png"/></p>
-<p><em>Figure 15 - Server Manager dashboard after reboot showing AD DS and DNS roles installed and running</em></p>
 <h3 id="active-directory-users-and-computers-1">Active Directory Users and Computers</h3>
 <p>Opened Active Directory Users and Computers from Tools. The dentist.local domain tree was visible with all its default containers.</p>
 <p><img src="assets/vm-doc/image16.png"/></p>
-<p><em>Figure 16 - Active Directory Users and Computers showing the dentist.local domain tree with all default containers</em></p>
 <h3 id="domain-user-account-creation-1">Domain User Account Creation</h3>
 <p>Created the same three user accounts as before for the dentist office scenario: Admin, OfficeManager, and Dentist. Same password complexity rules applied.</p>
 <p><img src="assets/vm-doc/image17.png"/></p>
-<p><em>Figure 17 - Users container showing Dentist and OfficeManager accounts created in the dentist.local domain</em></p>
 <p><img src="assets/vm-doc/image18.png"/></p>
-<p><em>Figure 18 - Users container showing the Admin account created in the dentist.local domain</em></p>
 <h3 id="ubuntu-network-configuration">Ubuntu Network Configuration</h3>
 <p>On Ubuntu, the second adapter (enp0s8) was configured with a static IP through the GUI in Settings &gt; Network. Set IP to 192.168.1.2, subnet 255.255.255.0, and DNS to 192.168.1.1 pointing at SERVER25. This is what allows Ubuntu to resolve the dentist.local domain.</p>
 <p><img src="assets/vm-doc/image19.png"/></p>
-<p><em>Figure 19 - Ubuntu enp0s8 IPv4 settings configured with static IP 192.168.1.2 and DNS pointing to SERVER25 at 192.168.1.1</em></p>
 <h3 id="ubuntu-domain-discovery-1">Ubuntu Domain Discovery</h3>
 <p>After configuring the static IP and DNS on Ubuntu's internal adapter, realm discover successfully found the dentist.local domain. This confirmed that the two VMs can communicate over the isolated internal network and that Ubuntu can reach the domain controller.</p>
 <p><img src="assets/vm-doc/image20.png"/></p>
-<p><em>Figure 20 - realm discover dentist.local output on Ubuntu showing successful domain discovery with DENTIST.LOCAL realm visible</em></p>
 <h3 id="observations-troubleshooting-1">Observations &amp; Troubleshooting</h3>
 <p><strong>Ubuntu login freeze:</strong> After installing Ubuntu, the login screen would accept the password but then freeze. Fixed it by increasing the VM's video memory from 16 MB to 128 MB in VirtualBox display settings.</p>
 <p><strong>IP conflict on adapters:</strong> Initially tried to set 192.168.1.1 on Adapter 1 (NAT) but VirtualBox warned that the same IP was already assigned to Adapter 2. Had to keep Adapter 1 on DHCP and assign the static IP only to Adapter 2.</p>
@@ -192,11 +172,9 @@
 <p>sudo apt install realmd sssd sssd-tools samba-common-bin samba winbind libpam-winbind libnss-winbind packagekit -y</p>
 <p>After installing, I ran realm discover to make sure Ubuntu could still see the domain:</p>
 <p><img src="assets/vm-doc/image21.png"/></p>
-<p><em>Figure 21 - realm discover dentist.local confirming domain is visible from Ubuntu after package installation</em></p>
 <h2 id="step-2---configure-etcsambasmb.conf">Step 2 - Configure /etc/samba/smb.conf</h2>
 <p>The default smb.conf that comes with the package is full of commented-out placeholder settings that caused problems. I replaced the whole thing with a short, clean version that just has what’s needed:</p>
 <p><img src="assets/vm-doc/image22.png"/></p>
-<p><em>Figure 22 - Clean /etc/samba/smb.conf configured for member server role with DENTIST workgroup and ADS security</em></p>
 <p>What the key settings do:</p>
 <p>server role = member server - this tells Samba the machine is joining a domain, not running one.</p>
 <p>security = ADS - this makes Samba use Active Directory to handle logins.</p>
@@ -212,7 +190,6 @@
 <h2 id="step-4---validate-configuration">Step 4 - Validate Configuration</h2>
 <p>Before trying the join I ran testparm, which checks the smb.conf file for any mistakes. Everything came back clean:</p>
 <p><img src="assets/vm-doc/image23.png"/></p>
-<p><em>Figure 23 - testparm output showing Loaded services file OK and Server role: ROLE_DOMAIN_MEMBER with no warnings</em></p>
 <h2 id="step-5---create-the-sssd-directory">Step 5 - Create the sssd Directory</h2>
 <p>This was the actual root cause of all the join failures. Everything else was working fine, but at the very end the join command tried to save a config file to a folder that didn’t exist yet. Once I created the folder, it worked:</p>
 <p>sudo mkdir -p /etc/sssd</p>
@@ -221,14 +198,11 @@
 <p>With everything set up, I ran the join command. The professor’s video specifically says to add --membership-software=samba when joining to Server 2025, because Server 2025 uses newer encryption that the default join method can’t handle:</p>
 <p>sudo realm join dentist.local -U Administrator --membership-software=samba</p>
 <p><img src="assets/vm-doc/image24.png"/></p>
-<p><em>Figure 24 - realm join output showing Already joined to this domain, confirming the join worked</em></p>
 <h2 id="step-7---verify-domain-membership">Step 7 - Verify Domain Membership</h2>
 <p>I ran realm list to double check that the join actually went through:</p>
 <p><img src="assets/vm-doc/image25.png"/></p>
-<p><em>Figure 25 - realm list output showing dentist.local as configured: kerberos-member, which means the join was successful</em></p>
 <p>Seeing kerberos-member means the machine is officially part of the domain. The system log also shows the exact line where it joined:</p>
 <p><img src="assets/vm-doc/image26.png"/></p>
-<p><em>Figure 26 - system log output showing Joined UBUNTU25 to dns domain dentist.local</em></p>
 <h2 id="step-8---enable-home-directory-creation">Step 8 - Enable Home Directory Creation</h2>
 <p>The professor’s video says Ubuntu needs one more setting turned on so that when a domain user logs in for the first time, the system automatically makes a home folder for them:</p>
 <p>sudo pam-auth-update</p>
