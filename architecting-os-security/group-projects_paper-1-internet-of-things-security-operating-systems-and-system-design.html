@@ -1,67 +1,98 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>Paper 1 - Internet of Things Security, Operating Systems, and System Design -- Architecting Operating System Security</title>
-  <link href="eportfolio.css" media="screen" rel="stylesheet" type="text/css" />
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+<title>Paper 1 - Internet of Things Security, Operating Systems, and System Design -- Architecting Operating System Security</title>
+<link href="eportfolio.css" media="screen" rel="stylesheet" type="text/css"/><link href="enhancements.css" media="screen" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="container">
-  <div id="header">
-    <a href="#skip_navigation" id="skip_navigation_link">Skip Navigation</a>
-    <a href="http://www.instructure.com" title="Created with Canvas"><img class="logo" src="logo.svg" alt="logo"/></a>
-    <h1>Paper 1 - Internet of Things Security, Operating Systems, and System Design</h1>
-    <h2><a href="vm-class-work_living-vm-document.html">Architecting Operating System Security</a> &#187; <a href="group-projects_paper-1-internet-of-things-security-operating-systems-and-system-design.html">Group Projects</a></h2>
-    <div class="clear"></div>
-  </div>
-  <div class="clear"></div>
-  <div id="nav-level2">
-    <ul>
-      <li class=""><a href="vm-class-work_living-vm-document.html">VM Class Work</a></li>
-      <li class="current"><a href="group-projects_paper-1-internet-of-things-security-operating-systems-and-system-design.html">Group Projects</a></li>
-      <li class=""><a href="personal-project-slash-tryhackme-pre-security-cert-and-sec+-introduction_personal-project-slash-tryhackme-pre-security-cert-and-sec+-introduction.html">Personal Project / TryHackMe Pre-Security cert and Sec+ Introduction</a></li>
-      <li class=""><a href="student-learning-objectives-slash-personal-work-documentation_slos-slash-independent-work-documents.html">Student Learning Objectives / Personal Work Documentation</a></li>
-    </ul>
-    <div class="clear"></div>
-  </div>
-  <div id="content">
-    <a name="skip_navigation"></a>
-    <h2>Paper 1 - Internet of Things Security, Operating Systems, and System Design</h2>
-    <div id="page_content">
-        
-<div class="section read_only" id="page_section_0">
-  <div class="section_content">
-        <div style="text-align: center;" class="attachment">
-            <a href="1_jeikeseth_mbrennan_mking_cis3367groupproject1.docx">
-              Click here to Download <span class="filename">jeikeseth_mbrennan_mking_cis3367groupproject1.docx</span>
-            </a>
-        </div>
-  </div>
+<div id="header">
+<a href="#skip_navigation" id="skip_navigation_link">Skip Navigation</a>
+<a href="http://www.instructure.com" title="Created with Canvas"><img alt="logo" class="logo" src="logo.svg"/></a>
+<h1>Paper 1 - Internet of Things Security, Operating Systems, and System Design</h1>
+<h2><a href="vm-class-work_living-vm-document.html">Architecting Operating System Security</a> » <a href="group-projects_paper-1-internet-of-things-security-operating-systems-and-system-design.html">Group Projects</a></h2>
+<div class="clear"></div>
 </div>
-
-    </div>
-  </div>
-  <div id="sidebar">
-    <div class="section_header">
+<div class="clear"></div>
+<div id="nav-level2">
+<ul>
+<li class=""><a href="vm-class-work_living-vm-document.html">VM Class Work</a></li>
+<li class="current"><a href="group-projects_paper-1-internet-of-things-security-operating-systems-and-system-design.html">Group Projects</a></li>
+<li class=""><a href="personal-project-slash-tryhackme-pre-security-cert-and-sec+-introduction_personal-project-slash-tryhackme-pre-security-cert-and-sec+-introduction.html">Personal Project / TryHackMe Pre-Security cert and Sec+ Introduction</a></li>
+<li class=""><a href="student-learning-objectives-slash-personal-work-documentation_slos-slash-independent-work-documents.html">Student Learning Objectives / Personal Work Documentation</a></li>
+</ul>
+<div class="clear"></div>
+</div>
+<div id="content">
+<a name="skip_navigation"></a>
+<h2>Paper 1 - Internet of Things Security, Operating Systems, and System Design</h2>
+<div id="page_content">
+<div class="section read_only" id="page_section_0">
+<div class="section_content"><div class="doc-render">
+<div class="doc-titleblock">
+<h1>Internet of Things Security, Operating Systems, and System Design</h1>
+<p class="doc-titleblock-meta">Jorgen Eikeseth, Michael Brennan &amp; Maxwell King<br/>
+University of South Florida<br/>
+CIS3367 – Architecting Operating Systems Security<br/>
+Professor Thomas Moore-Pizon<br/>
+March 3, 2026</p>
+</div>
+<h1 id="introduction">Introduction</h1>
+<p>Rapidly moving, the Internet of Things reshapes how today’s tech frameworks operate. Instead of working alone, everyday things such as sensors, cameras, household tools, factory gear, or embedded computing systems that communicate with each other through the internet. Information moves between them without needing human help, capturing details while adjusting on their own. As a result, people and companies gain clearer views of surroundings, streamline tasks, boosting effectiveness behind the scenes (Al-Boghdady et al., 2021). From hospitals to farms, transit networks to production lines, even urban layouts at large scale now rely heavily on these connected systems.</p>
+<p>Though helpful, such tools bring tough digital risks along. With growing numbers of devices joining networks, weak spots multiply fast. Often built for ease, speed, or low price, many smart devices ignore safety at the core. Because of this, safeguards either come late or show up too light to help. Despite their growing numbers, many IoT devices struggle with basic protection due to weak built-in hardware. Traditional machines like desktops or data centers usually pack more computing power than most smart sensors or household devices. Running on tiny chips and tight energy budgets, these compact units demand code that uses minimal resources while staying dependable. Still, fitting strong encryption into such narrow boundaries becomes a serious challenge for engineers building them.</p>
+<h1 id="summary-and-analysis">Summary and Analysis</h1>
+<p>Al-Boghdady et al. (2021) focus specifically on the operating systems that run on low-end IoT devices. They looked at real vulnerabilities reported across platforms like Contiki, RIOT, and TinyOS and sorted them by type and cause. One of the bigger takeaways is that memory issues and poor input handling show up the most, and a lot of those problems come from design choices that were made just to keep things running on very limited hardware. The authors make the point that security is not just overlooked in these systems, it is genuinely hard to do when the hardware barely has room for the basics. That context sets up the rest of the research well.</p>
+<p>A shift toward adaptive methods marks recent progress in securing connected devices. Rather than depending on predefined patterns, some models respond dynamically when faced with unfamiliar risks. What sets modern techniques apart is their capacity to evolve alongside emerging behaviors. Instead of static protocols, they employ algorithms that refine themselves over time. When attackers shift strategies or roll out new variations, standard tools often fall short, yet algorithms trained on behavioral data stay responsive. Patterns in network flow, once learned, help spot what stands out from normal operation (Al-Garadi et al., 2020). Within smart environments, odd interactions between devices may signal trouble. Unauthorized access bids emerge differently than usual. Sometimes, signs point to malware spreading quietly through connected nodes.</p>
+<p>Because IoT networks generate vast amounts of data, machine-learning methods offer a realistic way to examine continuous flows and highlight potential threats. While deep learning excels at identifying complex patterns missed by basic techniques (Al-Garadi et al., 2020), it requires significant computing power and memory. Since many IoT devices lack the resources to support such models directly, processing tends to shift toward edge servers or remote clouds - systems strong enough to handle inputs from far-flung sensors. Another line of research, though linked only indirectly, focuses instead on securing the operating systems running on energy-constrained machines. Nowadays, most IoT devices lack the capacity to run standard desktop operating systems. So, lightweight alternatives built for embedded applications take their place - examples include Contiki, RIOT, and TinyOS (Hahm et al., 2016).</p>
+<p>Despite minimal memory and low power availability, these systems must maintain reliable network links. What an OS does behind the scenes shapes how safe a device stays over time. Functions like managing hardware resources, processing network data, or rolling out updates operate deep within the system layer (Zikria et al., 2019). Old code or weak implementation in those areas opens doors hackers might walk through. That's what multiple studies underline: long-term safety depends on resilient operating environments capable of trustworthy interaction and steady upkeep.</p>
+<h1 id="analysis-of-referenced-research">Analysis of Referenced Research</h1>
+<p>The central study builds on past research into limitations common among Internet of Things devices. Earlier analyses of operating systems designed for energy-efficient equipment help explain how protection in such networks varies from regular computer setups. Systems like Contiki, RIOT, and TinyOS run efficiently even when computational power is minimal and storage space nearly absent (Hahm et al., 2016). Because resources are so limited, traditional digital defenses often fail when applied to these environments (Al-Boghdady et al., 2021). Running well under strict constraints requires building security features carefully. Because of this, studies frequently highlight slimmed-down verification methods, minimal encryption tools, together with shared oversight setups as workable solutions (Al-Garadi et al., 2020).</p>
+<p>Research into handling IoT networks supports - while adding weight to - the central argument made here. Large-scale IoT systems rely heavily on processes capable of checking device conditions, rolling out upgrades, while ensuring different kinds of devices operate together (Zikria et al., 2019). Without strong control measures, fixes might arrive late or never happen at all, allowing old software versions to persist and opening doors for attacks. Overall, findings suggest IoT safety goes beyond spotting threats. Rather than focusing only on breaches, attention must shift toward alignment across components - how devices are built, how software runs, how data moves, how networks operate. One part’s weakness influences another, shaping total resilience. Security emerges not from isolated fixes but from linked decisions at every level.</p>
+<h1 id="connection-to-course-concepts">Connection to Course Concepts</h1>
+<p>What shows up in studies about IoT safety often matches what courses teach in cyber defense and data management programs. Not all field highlights change like networks do, their complexity rises when more devices connect. As machines link and share details without pause, risks grow simply because there are more entry points. Gaps in protection tend to slip through cracks faster under such conditions. Take everyday items: thermostats, fitness bands, factory trackers, video feeds, these now operate within systems where communication happens on its own, no person needed. The scale of interaction shifts quietly, yet the impact stays clear.</p>
+<p>The textbook covers some concepts that connect pretty directly to what these articles are describing. It talks about the difference between constrained systems, which are built around strict security goals, and general-purpose systems, which trade some of that security for more flexibility. IoT operating systems are kind of caught between the two since they have the tight resource limits of a constrained system but usually do not have the formal security setup to go along with it. The idea of a trusted computing base comes up in the textbook too. The basic point is that a secure system needs a small protected core that everything else can rely on. In IoT devices that core is hard to define and even harder to protect, so things like complete mediation and verifiability, which the textbook treats as requirements for a secure OS, are rarely fully met.</p>
+<p>Such connectivity enables novel functions alongside experimental options, although it expands potential entry points for attackers. Conversations in class often center on design decisions along with resulting compromises. Performance must be balanced with expense, power limits, or safety needs, a choice engineers face repeatedly. The strain shows clearly in IoT devices due to restricted hardware capacity. Within narrow boundaries, creators aim for quick responses and low energy use without settling for weak protection. Security begins where components touch, when hardware choices shape OS behavior, when network rules respond to firmware limits. One flaw, anywhere, echoes through the rest. The machine's base steers what protections later layers can build. Protocols do not stand alone; they rely on detection tools that depend on system settings rooted in physical design. A break in one level weakens every tier above it.</p>
+<h1 id="expanded-iot-security-challenges">Expanded IoT Security Challenges</h1>
+<p>Security in IoT systems faces limits less from isolated product errors, more from deeper challenges rooted in diversity and ongoing maintenance demands Al-Boghdady et al., 2021. Because makers differ so widely, gear commonly ships using mismatched messaging formats alongside varied program layers and making consistent safeguards hard to enforce on one connected system. Another problem emerges through lifespan pressures. Devices frequently remain active for many years; however, regular updates tend to be missing or spotty at best.</p>
+<p>When flaws surface publicly, outdated code may keep hardware at risk indefinitely, giving intruders chances that linger far beyond initial setup. When updates are absent, some devices stay exposed until they are taken out of service. Real-world breakdowns show clearly what happens under these circumstances. Take Mirai: many weak IoT devices like webcams and modems got hijacked, then used together to flood major online platforms with traffic. Because risks stack up fast, experts lean on overlapping protections. Not one fix works alone; instead, firms layer strategies - proof of identity at login, data scrambling during transfer, stripped-down system software, constant watch over traffic flows is all meant to hold threats at bay.</p>
+<h1 id="future-implications">Future Implications</h1>
+<p>With the growth of IoT tech, stronger security becomes more pressing. Experts predict many billions of devices will join online networks soon. For smart urban areas, self-driving transport, medical tracking tools, or automated factories, safety cannot wait. Protection from breaches matters deeply since these systems rely heavily on trust. Without safeguards, risks multiply fast. Future studies will probably focus on leaner machine learning systems capable of operating directly on IoT devices without heavy processing needs.</p>
+<p>Meanwhile, progress in edge computing might shift analysis closer to where data originates, reducing dependence on centralized cloud systems. Security standards worldwide will likely influence how safe IoT settings become. Requirements from official and technological organizations may lead manufacturers to build stronger safeguards into connected equipment, establishing clearer expectations for baseline protections. Still, locking down the Internet of things isn’t something one team can handle alone. Progress hinges on collaboration - engineers working alongside analysts, lawmakers, and firms building tech tools. Because advances in machine learning, core software structures, and traffic control methods come together, stronger defenses take shape naturally. Resilience grows where these fields overlap.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Across ‌a ‌wide ‌range of sectors, the Internet of Things has opened clear paths for new forms of innovation and automation. At the same time, as connected devices multiply quickly, cybersecurity risks have grown in step. Security is harder to maintain in IoT settings because devices often have limited hardware resources, networks can operate at large scale, and platforms vary substantially across manufacturers and use cases. All of the findings in the research we read indicates that protecting IoT systems depends on a layered security strategy rather than any single control.</p>
+<p>When applied, protection of linked endpoints relies upon combined operation of machine learning for spotting threats, efficient operating systems adapted to limited hardware, along with structured network oversight methods. Because IoT technology constantly shifts and expands quickly, those studying it must keep adjusting safeguards without pause. As improvements in architecture reduce flaws, secure development of larger IoT networks becomes possible despite increasing scale.</p>
+<h2 id="references">References</h2>
+<p>Al-Garadi, M. A., Mohamed, A., Al-Ali, A. K., Du, X., Ali, I., &amp; Guizani, M. (2020). A survey of machine and deep learning methods for Internet of Things (IoT) security. <em>IEEE Access, 8</em>, 182722–182738. <a href="https://ieeexplore.ieee.org/document/9072101">https://ieeexplore.ieee.org/document/9072101</a></p>
+<p>Hahm, O., Baccelli, E., Petersen, H., &amp; Tsiftes, N. (2016). Operating systems for low-end devices in the Internet of Things: A survey. <em>IEEE Internet of Things Journal, 3</em>(5), 720–734. <a href="https://doi.org/10.1109/JIOT.2015.2505901">https://doi.org/10.1109/JIOT.2015.2505901</a></p>
+<p>Zikria, Y. B., Kim, S. W., Hahm, O., Afzal, M. K., &amp; Aalsalem, M. Y. (2019). Internet of Things (IoT) operating systems management: Opportunities, challenges, and solution. <em>Sensors, 19</em>(8), 1793. <a href="https://doi.org/10.3390/s19081793">https://doi.org/10.3390/s19081793</a></p>
+<p>Al-Boghdady, A., Wassif, K., &amp; El-Ramly, M. (2021). The presence, trends, and causes of security vulnerabilities in operating systems of IoT’s low-end devices. <em>Sensors, 21</em>(7), 2329. <a href="https://doi.org/10.3390/s21072329">https://doi.org/10.3390/s21072329</a></p>
+<p>Forouzan, B. A. (2022). <em>Data communications and networking with TCP/IP protocol suite</em> (6th ed.). McGraw Hill.</p>
+</div>
+<p class="doc-source">Original file: <a href="1_jeikeseth_mbrennan_mking_cis3367groupproject1.docx">jeikeseth_mbrennan_mking_cis3367groupproject1.docx</a> (Word .docx)</p></div>
+</div>
+</div>
+</div>
+<div id="sidebar">
+<div class="section_header">
       Group Projects
     </div>
-    <ul id="page_list">
-        <li id="page_460159" class="page current">
-          <a class="page_url" href="group-projects_paper-1-internet-of-things-security-operating-systems-and-system-design.html">
-            <span class="name">Paper 1 - Internet of Things Security, Operating Systems, and System Design</span>
-          </a>
-        </li>
-        <li id="page_464251" class="page ">
-          <a class="page_url" href="group-projects_paper-2-cybersecurity-standards-in-operating-systems-summary-and-analysis.html">
-            <span class="name">Paper 2 - Cybersecurity Standards in Operating Systems: Summary and Analysis</span>
-          </a>
-        </li>
-    </ul>
-  </div>
+<ul id="page_list">
+<li class="page current" id="page_460159">
+<a class="page_url" href="group-projects_paper-1-internet-of-things-security-operating-systems-and-system-design.html">
+<span class="name">Paper 1 - Internet of Things Security, Operating Systems, and System Design</span>
+</a>
+</li>
+<li class="page" id="page_464251">
+<a class="page_url" href="group-projects_paper-2-cybersecurity-standards-in-operating-systems-summary-and-analysis.html">
+<span class="name">Paper 2 - Cybersecurity Standards in Operating Systems: Summary and Analysis</span>
+</a>
+</li>
+</ul>
 </div>
-
-
+</div>
 </body>
 </html>

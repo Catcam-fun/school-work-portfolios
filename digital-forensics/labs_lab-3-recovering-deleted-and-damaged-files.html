@@ -1,91 +1,84 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>Lab 3: Recovering Deleted and Damaged Files -- Digital Forensics</title>
-  <link href="eportfolio.css" media="screen" rel="stylesheet" type="text/css" />
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+<title>Lab 3: Recovering Deleted and Damaged Files -- Digital Forensics</title>
+<link href="eportfolio.css" media="screen" rel="stylesheet" type="text/css"/><link href="enhancements.css" media="screen" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="container">
-  <div id="header">
-    <a href="#skip_navigation" id="skip_navigation_link">Skip Navigation</a>
-    <a href="http://www.instructure.com" title="Created with Canvas"><img class="logo" src="logo.svg" alt="logo"/></a>
-    <h1>Lab 3: Recovering Deleted and Damaged Files</h1>
-    <h2><a href="labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html">Digital Forensics</a> &#187; <a href="labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html">Labs</a></h2>
-    <div class="clear"></div>
-  </div>
-  <div class="clear"></div>
-  <div id="nav-level2">
-    <ul>
-      <li class="current"><a href="labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html">Labs</a></li>
-    </ul>
-    <div class="clear"></div>
-  </div>
-  <div id="content">
-    <a name="skip_navigation"></a>
-    <h2>Lab 3: Recovering Deleted and Damaged Files</h2>
-    <div id="page_content">
-        
-<div class="section read_only" id="page_section_0">
-  <div class="section_content">
-        <div style="text-align: center;" class="attachment">
-            <a href="3_Recovering Deleted and Damaged Files (4e) - Maxwell King (1).pdf">
-              Click here to Download <span class="filename">Recovering Deleted and Damaged Files (4e) - Maxwell King (1).pdf</span>
-            </a>
-        </div>
-  </div>
+<div id="header">
+<a href="#skip_navigation" id="skip_navigation_link">Skip Navigation</a>
+<a href="http://www.instructure.com" title="Created with Canvas"><img alt="logo" class="logo" src="logo.svg"/></a>
+<h1>Lab 3: Recovering Deleted and Damaged Files</h1>
+<h2><a href="labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html">Digital Forensics</a> » <a href="labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html">Labs</a></h2>
+<div class="clear"></div>
 </div>
-
-        
-<div class="section " id="page_section_1">
-  <div class="section_content">
-        <p data-start="5022" data-end="5449">The purpose of this lab was to recover deleted and damaged files from different file systems. The case involved intellectual property theft, where suspects may have removed evidence from their computers. The challenge was understanding that when a file is deleted, the data is not always completely erased. The file reference may be removed, but the data can still remain on the drive until that space is reused or overwritten.</p><p data-start="5451" data-end="5935">During the first part of the lab, I used Paraben’s E3 to recover deleted files from an NTFS drive image. E3 located recovered files in the Trash folder, and I examined those files for patent and product design information. I also looked at the Windows Recycle Bin. This was helpful because the Recycle Bin can still hold files that the user intended to delete but did not fully remove. It also showed that deleted files can still contain useful metadata and original file information.</p><p data-start="5937" data-end="6414">In the second part of the lab, I used Autopsy to search an Ext4 Linux drive image. Autopsy organized the deleted files in a way that made them easier to view and extract. I found another patent file on the Linux drive image, which showed that deleted evidence can be recovered from more than just Windows systems. This part helped me understand the differences between forensic tools, while also showing that the main goal is the same: find, recover, and preserve the evidence.</p><p data-start="6416" data-end="6843">Later in the lab, I used PhotoRec on a Linux system to recover data through data carving. This was different because data carving relies more on file signatures instead of normal file system references. I recovered compressed files and backup files from a RAR archive. In the challenge section, I recovered files from FAT32 and APFS drive images, which showed that different file systems may require different recovery methods.</p><p data-start="6845" data-end="7240">I learned that file recovery depends on how the file was deleted, what file system was used, and whether the data has been overwritten. I also realized that deleted data can be important because people may delete files specifically to hide them. This lab was a good reminder that “gone” does not always mean gone, and investigators should examine deleted data before assuming it is lost forever.</p>
-  </div>
+<div class="clear"></div>
+<div id="nav-level2">
+<ul>
+<li class="current"><a href="labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html">Labs</a></li>
+</ul>
+<div class="clear"></div>
 </div>
-
-    </div>
-  </div>
-  <div id="sidebar">
-    <div class="section_header">
+<div id="content">
+<a name="skip_navigation"></a>
+<h2>Lab 3: Recovering Deleted and Damaged Files</h2>
+<div id="page_content">
+<div class="section" id="page_section_1">
+<div class="section_content">
+<p data-end="5449" data-start="5022">The purpose of this lab was to recover deleted and damaged files from different file systems. The case involved intellectual property theft, where suspects may have removed evidence from their computers. The challenge was understanding that when a file is deleted, the data is not always completely erased. The file reference may be removed, but the data can still remain on the drive until that space is reused or overwritten.</p><p data-end="5935" data-start="5451">During the first part of the lab, I used Paraben’s E3 to recover deleted files from an NTFS drive image. E3 located recovered files in the Trash folder, and I examined those files for patent and product design information. I also looked at the Windows Recycle Bin. This was helpful because the Recycle Bin can still hold files that the user intended to delete but did not fully remove. It also showed that deleted files can still contain useful metadata and original file information.</p><p data-end="6414" data-start="5937">In the second part of the lab, I used Autopsy to search an Ext4 Linux drive image. Autopsy organized the deleted files in a way that made them easier to view and extract. I found another patent file on the Linux drive image, which showed that deleted evidence can be recovered from more than just Windows systems. This part helped me understand the differences between forensic tools, while also showing that the main goal is the same: find, recover, and preserve the evidence.</p><p data-end="6843" data-start="6416">Later in the lab, I used PhotoRec on a Linux system to recover data through data carving. This was different because data carving relies more on file signatures instead of normal file system references. I recovered compressed files and backup files from a RAR archive. In the challenge section, I recovered files from FAT32 and APFS drive images, which showed that different file systems may require different recovery methods.</p><p data-end="7240" data-start="6845">I learned that file recovery depends on how the file was deleted, what file system was used, and whether the data has been overwritten. I also realized that deleted data can be important because people may delete files specifically to hide them. This lab was a good reminder that “gone” does not always mean gone, and investigators should examine deleted data before assuming it is lost forever.</p>
+</div>
+</div><div class="section read_only" id="page_section_0">
+<div class="section_content"><div class="pdf-embed"><p class="pdf-embed-label">Original submission (PDF)</p>
+<iframe class="pdf-frame" src="3_Recovering Deleted and Damaged Files (4e) - Maxwell King (1).pdf" title="Recovering Deleted and Damaged Files (4e) - Maxwell King (1).pdf">
+<p>Your browser can't display embedded PDFs. <a href="3_Recovering Deleted and Damaged Files (4e) - Maxwell King (1).pdf">Open Recovering Deleted and Damaged Files (4e) - Maxwell King (1).pdf directly</a>.</p>
+</iframe>
+<p class="pdf-fallback">Trouble viewing it here? <a href="3_Recovering Deleted and Damaged Files (4e) - Maxwell King (1).pdf" rel="noopener" target="_blank">Open the PDF in a new tab</a>.</p>
+</div></div>
+</div>
+</div>
+</div>
+<div id="sidebar">
+<div class="section_header">
       Labs
     </div>
-    <ul id="page_list">
-        <li id="page_454511" class="page ">
-          <a class="page_url" href="labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html">
-            <span class="name">Lab 1: Applying the Daubert Standard to Forensic Evidence</span>
-          </a>
-        </li>
-        <li id="page_463843" class="page ">
-          <a class="page_url" href="labs_lab-2-detecting-the-use-of-steganography-in-forensic-evidence.html">
-            <span class="name">Lab 2: Detecting the Use of Steganography in Forensic Evidence</span>
-          </a>
-        </li>
-        <li id="page_463851" class="page current">
-          <a class="page_url" href="labs_lab-3-recovering-deleted-and-damaged-files.html">
-            <span class="name">Lab 3: Recovering Deleted and Damaged Files</span>
-          </a>
-        </li>
-        <li id="page_463853" class="page ">
-          <a class="page_url" href="labs_lab-5-conducting-forensic-investigations-on-windows-systems.html">
-            <span class="name">Lab 5: Conducting Forensic Investigations on Windows Systems</span>
-          </a>
-        </li>
-        <li id="page_463855" class="page ">
-          <a class="page_url" href="labs_lab-7-conducting-forensic-investigations-on-email-and-chat-logs.html">
-            <span class="name">Lab 7: Conducting Forensic Investigations on Email and Chat Logs</span>
-          </a>
-        </li>
-        <li id="page_463857" class="page ">
-          <a class="page_url" href="labs_lab-8-conducting-forensic-investigations-of-mobile-devices.html">
-            <span class="name">Lab 8: Conducting Forensic Investigations of Mobile Devices</span>
-          </a>
-        </li>
-    </ul>
-  </div>
+<ul id="page_list">
+<li class="page" id="page_454511">
+<a class="page_url" href="labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html">
+<span class="name">Lab 1: Applying the Daubert Standard to Forensic Evidence</span>
+</a>
+</li>
+<li class="page" id="page_463843">
+<a class="page_url" href="labs_lab-2-detecting-the-use-of-steganography-in-forensic-evidence.html">
+<span class="name">Lab 2: Detecting the Use of Steganography in Forensic Evidence</span>
+</a>
+</li>
+<li class="page current" id="page_463851">
+<a class="page_url" href="labs_lab-3-recovering-deleted-and-damaged-files.html">
+<span class="name">Lab 3: Recovering Deleted and Damaged Files</span>
+</a>
+</li>
+<li class="page" id="page_463853">
+<a class="page_url" href="labs_lab-5-conducting-forensic-investigations-on-windows-systems.html">
+<span class="name">Lab 5: Conducting Forensic Investigations on Windows Systems</span>
+</a>
+</li>
+<li class="page" id="page_463855">
+<a class="page_url" href="labs_lab-7-conducting-forensic-investigations-on-email-and-chat-logs.html">
+<span class="name">Lab 7: Conducting Forensic Investigations on Email and Chat Logs</span>
+</a>
+</li>
+<li class="page" id="page_463857">
+<a class="page_url" href="labs_lab-8-conducting-forensic-investigations-of-mobile-devices.html">
+<span class="name">Lab 8: Conducting Forensic Investigations of Mobile Devices</span>
+</a>
+</li>
+</ul>
 </div>
-
-
+</div>
 </body>
 </html>

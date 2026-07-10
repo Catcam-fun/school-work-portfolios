@@ -1,62 +1,238 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>Living VM Document -- Architecting Operating System Security</title>
-  <link href="eportfolio.css" media="screen" rel="stylesheet" type="text/css" />
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+<title>Living VM Document -- Architecting Operating System Security</title>
+<link href="eportfolio.css" media="screen" rel="stylesheet" type="text/css"/><link href="enhancements.css" media="screen" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="container">
-  <div id="header">
-    <a href="#skip_navigation" id="skip_navigation_link">Skip Navigation</a>
-    <a href="http://www.instructure.com" title="Created with Canvas"><img class="logo" src="logo.svg" alt="logo"/></a>
-    <h1>Living VM Document</h1>
-    <h2><a href="vm-class-work_living-vm-document.html">Architecting Operating System Security</a> &#187; <a href="vm-class-work_living-vm-document.html">VM Class Work</a></h2>
-    <div class="clear"></div>
-  </div>
-  <div class="clear"></div>
-  <div id="nav-level2">
-    <ul>
-      <li class="current"><a href="vm-class-work_living-vm-document.html">VM Class Work</a></li>
-      <li class=""><a href="group-projects_paper-1-internet-of-things-security-operating-systems-and-system-design.html">Group Projects</a></li>
-      <li class=""><a href="personal-project-slash-tryhackme-pre-security-cert-and-sec+-introduction_personal-project-slash-tryhackme-pre-security-cert-and-sec+-introduction.html">Personal Project / TryHackMe Pre-Security cert and Sec+ Introduction</a></li>
-      <li class=""><a href="student-learning-objectives-slash-personal-work-documentation_slos-slash-independent-work-documents.html">Student Learning Objectives / Personal Work Documentation</a></li>
-    </ul>
-    <div class="clear"></div>
-  </div>
-  <div id="content">
-    <a name="skip_navigation"></a>
-    <h2>Living VM Document</h2>
-    <div id="page_content">
-        
-<div class="section read_only" id="page_section_0">
-  <div class="section_content">
-        <div style="text-align: center;" class="attachment">
-            <a href="3_CIS3367 Living VM Document.docx">
-              Click here to Download <span class="filename">CIS3367 Living VM Document-2.docx</span>
-            </a>
-        </div>
-  </div>
+<div id="header">
+<a href="#skip_navigation" id="skip_navigation_link">Skip Navigation</a>
+<a href="http://www.instructure.com" title="Created with Canvas"><img alt="logo" class="logo" src="logo.svg"/></a>
+<h1>Living VM Document</h1>
+<h2><a href="vm-class-work_living-vm-document.html">Architecting Operating System Security</a> » <a href="vm-class-work_living-vm-document.html">VM Class Work</a></h2>
+<div class="clear"></div>
 </div>
-
-    </div>
-  </div>
-  <div id="sidebar">
-    <div class="section_header">
+<div class="clear"></div>
+<div id="nav-level2">
+<ul>
+<li class="current"><a href="vm-class-work_living-vm-document.html">VM Class Work</a></li>
+<li class=""><a href="group-projects_paper-1-internet-of-things-security-operating-systems-and-system-design.html">Group Projects</a></li>
+<li class=""><a href="personal-project-slash-tryhackme-pre-security-cert-and-sec+-introduction_personal-project-slash-tryhackme-pre-security-cert-and-sec+-introduction.html">Personal Project / TryHackMe Pre-Security cert and Sec+ Introduction</a></li>
+<li class=""><a href="student-learning-objectives-slash-personal-work-documentation_slos-slash-independent-work-documents.html">Student Learning Objectives / Personal Work Documentation</a></li>
+</ul>
+<div class="clear"></div>
+</div>
+<div id="content">
+<a name="skip_navigation"></a>
+<h2>Living VM Document</h2>
+<div id="page_content">
+<div class="section read_only" id="page_section_0">
+<div class="section_content"><div class="doc-render">
+<p><strong>CIS 3367</strong></p>
+<p>Architecting Operating System Security</p>
+<p><strong>Portfolio Lab Notebook</strong></p>
+<p>Spring 2026</p>
+<p>University of South Florida</p>
+<p>Professor Thomas E. Moore-Pizon</p>
+<p><strong>Maxwell King</strong></p>
+<h1 id="about-this-document">About This Document</h1>
+<p>This living document serves as the lab notebook and portfolio for CIS 3367. It is updated throughout the semester to document lab activities, configurations, observations, and screenshots. It is organized into two tracks: Class Work (directed assignments) and Independent Work (self-guided exploration).</p>
+<p><strong>Lab Environment:</strong> Florida CyberHub (labs.floridacyberhub.org)</p>
+<p><strong>Virtual Machines:</strong></p>
+<p>• SERVER25 - Windows Server 2025 (IP: 10.21.28.244)</p>
+<p>• UBUNTU24 - Ubuntu 24 Linux (IP: 10.21.28.245)</p>
+<p>• WINDOWS11 - Windows 11 Client (IP: 10.21.28.246)</p>
+<h1 id="class-work">Class Work</h1>
+<h2 id="cw-1---vm-setup-active-directory-domain-users">CW-1 - VM Setup, Active Directory &amp; Domain Users</h2>
+<p>This assignment covers establishing baseline connectivity on both virtual machines, configuring Active Directory Domain Services on the Windows Server as a domain controller, and creating user accounts for a simulated three-person dentist office. An attempt was also made to join the Ubuntu machine to the domain, which required significant troubleshooting and is documented in the Observations section.</p>
+<h3 id="network-connectivity">Network Connectivity</h3>
+<p>Ran ipconfig /all on SERVER25 to confirm DHCP assigned an IP, gateway, and DNS servers.</p>
+<p><img src="assets/vm-doc/image1.png"/></p>
+<p><em>Figure 1 - SERVER25 ipconfig /all confirming DHCP-assigned IP, gateway, and DNS configuration</em></p>
+<h3 id="active-directory-domain-services-installation">Active Directory Domain Services Installation</h3>
+<p>AD DS was installed through Server Manager. Selected the role, added the required features when prompted, and let it install.</p>
+<p><img src="assets/vm-doc/image2.png"/></p>
+<p><em>Figure 2 - Server Roles wizard with Active Directory Domain Services selected</em></p>
+<h3 id="promoting-to-domain-controller">Promoting to Domain Controller</h3>
+<p>After install, promoted the server to a domain controller by creating a new forest named dentist.local. Set a DSRM recovery password when prompted.</p>
+<p><img src="assets/vm-doc/image3.png"/></p>
+<p><em>Figure 3 - AD DS Configuration Wizard showing Add a new forest with dentist.local as the root domain</em></p>
+<h3 id="post-reboot-confirmation">Post-Reboot Confirmation</h3>
+<p>Server rebooted automatically after promotion. Server Manager came back showing AD DS and DNS both installed and green.</p>
+<p><img src="assets/vm-doc/image4.png"/></p>
+<p><em>Figure 4 - Server Manager dashboard confirming AD DS and DNS roles installed and running</em></p>
+<h3 id="active-directory-users-and-computers">Active Directory Users and Computers</h3>
+<p>Opened Active Directory Users and Computers from Server Manager &gt; Tools. The dentist.local domain was visible with its default folders.</p>
+<p><img src="assets/vm-doc/image5.png"/></p>
+<p><em>Figure 5 - Active Directory Users and Computers showing the dentist.local domain tree</em></p>
+<h3 id="domain-user-account-creation">Domain User Account Creation</h3>
+<p>Created three user accounts for the dentist office scenario. Hit a naming conflict on Admin - 'admin' is reserved by the system so I had to use 'adminuser' as the logon name. Password complexity was enforced throughout.</p>
+<p><img src="assets/vm-doc/image6.png"/></p>
+<p><em>Figure 6 - New User wizard showing the Admin account being created with logon name adminuser@dentist.local</em></p>
+<p><img src="assets/vm-doc/image7.png"/></p>
+<p><em>Figure 7 - Active Directory Users and Computers showing all three domain accounts created: Admin, Adminuser, Dentist, and OfficeManager</em></p>
+<h3 id="inter-vm-dns-configuration">Inter-VM DNS Configuration</h3>
+<p>Ubuntu couldn't find dentist.local until I pointed its DNS at the Windows Server. Edited /etc/resolv.conf to add 10.21.28.244 as the nameserver. Without that, realm discover returns nothing.</p>
+<p><img src="assets/vm-doc/image8.png"/></p>
+<p><em>Figure 8 - /etc/resolv.conf on UBUNTU24 with SERVER25's IP (10.21.28.244) added as the primary nameserver</em></p>
+<h3 id="ubuntu-domain-discovery">Ubuntu Domain Discovery</h3>
+<p>After fixing DNS, realm discover found the domain and confirmed the machines could communicate. It also listed the packages still needed to complete the join.</p>
+<p><img src="assets/vm-doc/image9.png"/></p>
+<p><em>Figure 9 - realm discover dentist.local output on UBUNTU24 showing successful domain discovery</em></p>
+<h3 id="observations-troubleshooting">Observations &amp; Troubleshooting</h3>
+<p><strong>Ubuntu repos were broken:</strong> Ubuntu 24.10 is end-of-life so apt couldn't find packages. Fixed it by adding a sources file pointing to old-releases.ubuntu.com.</p>
+<p><strong>'admin' username was taken:</strong> AD already reserves an admin account so I had to use 'adminuser' as the logon name instead.</p>
+<p><strong>Password rules:</strong> AD rejected simple passwords. Also wouldn't let the Dentist account use 'Dentist' in the password since it matches the username.</p>
+<p><strong>Domain join kept failing:</strong> realm join failed repeatedly. The CyberHub password wasn't the same as the domain admin password, resolv.conf kept resetting, and missing packages caused issues. Decided to redo the whole thing locally in VirtualBox for more control.</p>
+<h2 id="cw-2---title-tbd">CW-2 - [Title TBD]</h2>
+<p><em>[This section will be added when the next assignment is released.]</em></p>
+<h2 id="cw-1-continued---environment-reset-local-vm-setup">CW-1 Continued - Environment Reset &amp; Local VM Setup</h2>
+<p>Decided to scrap the CyberHub setup and redo this locally in VirtualBox. CyberHub made it hard to know what was going on - passwords and network settings were handled by the platform so I couldn't see or control them. Doing it on local VMs means I set everything up myself and actually understand what each piece is doing. The CyberHub work above is kept since it documents the first attempt and everything that went wrong.</p>
+<p><strong>Local VM Environment:</strong></p>
+<p>• VM 1 - Windows Server 2025 (Domain Controller)</p>
+<p>• VM 2 - Ubuntu 24 Linux</p>
+<h3 id="vm-configuration">VM Configuration</h3>
+<p>Both VMs were created in VirtualBox with the following specs:</p>
+<p><strong>SERVER25:</strong></p>
+<p>• ISO: Windows Server 2025 Standard Evaluation (Microsoft Evaluation Center)</p>
+<p>• RAM: 4096 MB</p>
+<p>• Disk: 50 GB VDI dynamically allocated</p>
+<p><strong>UBUNTU25:</strong></p>
+<p>• ISO: Ubuntu 24.04.4 LTS Desktop (64-bit)</p>
+<p>• RAM: 4096 MB</p>
+<p>• Disk: 25 GB VDI dynamically allocated</p>
+<h3 id="network-adapter-configuration">Network Adapter Configuration</h3>
+<p>Each VM was given two network adapters. Adapter 1 is NAT for internet access. Adapter 2 is set to Internal Network (named intnet) to create an isolated private network between the two VMs. Using an isolated internal network is more secure than letting the VMs share the same NAT network - it keeps domain traffic contained and separate from the internet-facing adapter.</p>
+<p>SERVER25's Ethernet 2 (the internal adapter) was given a static IP of 192.168.1.1 so Ubuntu always knows how to reach it. Ubuntu's internal adapter (enp0s8) was set to 192.168.1.2 with DNS pointing to 192.168.1.1.</p>
+<p><img src="assets/vm-doc/image10.png"/></p>
+<p><em>Figure 10 - SERVER25 Ethernet 2 static IP configuration: 192.168.1.1 / 255.255.255.0 with DNS pointing to itself</em></p>
+<h3 id="both-vms-running">Both VMs Running</h3>
+<p><img src="assets/vm-doc/image11.png"/></p>
+<p><em>Figure 11 - Ubuntu 24.04 desktop running in VirtualBox after successful installation</em></p>
+<h3 id="network-connectivity---server25">Network Connectivity - SERVER25</h3>
+<p>Ran ipconfig /all on the local SERVER25 to confirm adapter settings. Adapter 1 (NAT) received a DHCP address from VirtualBox. Adapter 2 (Internal) confirmed the static IP 192.168.1.1.</p>
+<p><img src="assets/vm-doc/image12.png"/></p>
+<p><em>Figure 12 - SERVER25 ipconfig /all on local VirtualBox VM showing NAT and internal network adapter settings</em></p>
+<h3 id="active-directory-domain-services-installation-1">Active Directory Domain Services Installation</h3>
+<p>Installed AD DS the same way as the CyberHub attempt - through Server Manager &gt; Add Roles and Features. Selected Active Directory Domain Services, added the required features, and let it install.</p>
+<p><img src="assets/vm-doc/image13.png"/></p>
+<p><em>Figure 13 - AD DS installation progress on local SERVER25 VM showing all components installing successfully</em></p>
+<h3 id="promoting-to-domain-controller-1">Promoting to Domain Controller</h3>
+<p>After install, clicked the yellow flag notification in Server Manager to promote the server to a domain controller. Created a new forest named dentist.local.</p>
+<p><img src="assets/vm-doc/image14.png"/></p>
+<p><em>Figure 14 - AD DS Configuration Wizard showing Add a new forest with dentist.local as the root domain name</em></p>
+<h3 id="post-reboot-confirmation-1">Post-Reboot Confirmation</h3>
+<p>Server rebooted automatically after promotion. Server Manager came back with AD DS and DNS both green, confirming the domain controller is running correctly.</p>
+<p><img src="assets/vm-doc/image15.png"/></p>
+<p><em>Figure 15 - Server Manager dashboard after reboot showing AD DS and DNS roles installed and running</em></p>
+<h3 id="active-directory-users-and-computers-1">Active Directory Users and Computers</h3>
+<p>Opened Active Directory Users and Computers from Tools. The dentist.local domain tree was visible with all its default containers.</p>
+<p><img src="assets/vm-doc/image16.png"/></p>
+<p><em>Figure 16 - Active Directory Users and Computers showing the dentist.local domain tree with all default containers</em></p>
+<h3 id="domain-user-account-creation-1">Domain User Account Creation</h3>
+<p>Created the same three user accounts as before for the dentist office scenario: Admin, OfficeManager, and Dentist. Same password complexity rules applied.</p>
+<p><img src="assets/vm-doc/image17.png"/></p>
+<p><em>Figure 17 - Users container showing Dentist and OfficeManager accounts created in the dentist.local domain</em></p>
+<p><img src="assets/vm-doc/image18.png"/></p>
+<p><em>Figure 18 - Users container showing the Admin account created in the dentist.local domain</em></p>
+<h3 id="ubuntu-network-configuration">Ubuntu Network Configuration</h3>
+<p>On Ubuntu, the second adapter (enp0s8) was configured with a static IP through the GUI in Settings &gt; Network. Set IP to 192.168.1.2, subnet 255.255.255.0, and DNS to 192.168.1.1 pointing at SERVER25. This is what allows Ubuntu to resolve the dentist.local domain.</p>
+<p><img src="assets/vm-doc/image19.png"/></p>
+<p><em>Figure 19 - Ubuntu enp0s8 IPv4 settings configured with static IP 192.168.1.2 and DNS pointing to SERVER25 at 192.168.1.1</em></p>
+<h3 id="ubuntu-domain-discovery-1">Ubuntu Domain Discovery</h3>
+<p>After configuring the static IP and DNS on Ubuntu's internal adapter, realm discover successfully found the dentist.local domain. This confirmed that the two VMs can communicate over the isolated internal network and that Ubuntu can reach the domain controller.</p>
+<p><img src="assets/vm-doc/image20.png"/></p>
+<p><em>Figure 20 - realm discover dentist.local output on Ubuntu showing successful domain discovery with DENTIST.LOCAL realm visible</em></p>
+<h3 id="observations-troubleshooting-1">Observations &amp; Troubleshooting</h3>
+<p><strong>Ubuntu login freeze:</strong> After installing Ubuntu, the login screen would accept the password but then freeze. Fixed it by increasing the VM's video memory from 16 MB to 128 MB in VirtualBox display settings.</p>
+<p><strong>IP conflict on adapters:</strong> Initially tried to set 192.168.1.1 on Adapter 1 (NAT) but VirtualBox warned that the same IP was already assigned to Adapter 2. Had to keep Adapter 1 on DHCP and assign the static IP only to Adapter 2.</p>
+<p><strong>realm discover failing:</strong> Ubuntu couldn't find dentist.local until the internal network adapter was given a static IP with DNS pointed at SERVER25. NAT adapters on VirtualBox are isolated from each other so they can't communicate directly.</p>
+<p><strong>Server 2025 domain join note:</strong> The professor's course video noted that Windows Server 2025 uses enhanced encryption that breaks the default SSSD join method. The correct command requires adding --membership-software=samba to force the use of Samba WinBind instead.</p>
+<h2 id="ubuntu-domain-join">Ubuntu Domain Join</h2>
+<p>Once the domain was set up on SERVER25 and Ubuntu had its network configured, the next step was getting UBUNTU25 to join the dentist.local domain. I had to install some packages, edit a couple of config files, and run the join command. Server 2025 needs a special flag added to the join command, which the professor’s video covers.</p>
+<h2 id="step-1---install-required-packages">Step 1 - Install Required Packages</h2>
+<p>First I installed everything Ubuntu needs to talk to an Active Directory domain:</p>
+<p>sudo apt install realmd sssd sssd-tools samba-common-bin samba winbind libpam-winbind libnss-winbind packagekit -y</p>
+<p>After installing, I ran realm discover to make sure Ubuntu could still see the domain:</p>
+<p><img src="assets/vm-doc/image21.png"/></p>
+<p><em>Figure 21 - realm discover dentist.local confirming domain is visible from Ubuntu after package installation</em></p>
+<h2 id="step-2---configure-etcsambasmb.conf">Step 2 - Configure /etc/samba/smb.conf</h2>
+<p>The default smb.conf that comes with the package is full of commented-out placeholder settings that caused problems. I replaced the whole thing with a short, clean version that just has what’s needed:</p>
+<p><img src="assets/vm-doc/image22.png"/></p>
+<p><em>Figure 22 - Clean /etc/samba/smb.conf configured for member server role with DENTIST workgroup and ADS security</em></p>
+<p>What the key settings do:</p>
+<p>server role = member server - this tells Samba the machine is joining a domain, not running one.</p>
+<p>security = ADS - this makes Samba use Active Directory to handle logins.</p>
+<p>netbios name = UBUNTU25 - machine names on a domain can only be 15 characters max. The default hostname ubuntu25-VirtualBox is 20 characters and the join will fail because of it, so I set a short name here.</p>
+<p>idmap config - this maps domain user accounts to Linux user IDs so the system knows who is who.</p>
+<h2 id="step-3---configure-etcrealmd.conf">Step 3 - Configure /etc/realmd.conf</h2>
+<p>This was one of the bigger things I figured out. The realm join command doesn’t actually use the smb.conf file at all. It makes its own temporary config when it runs, so the computer name I set in smb.conf gets ignored. I had to create a separate file called /etc/realmd.conf and set the computer name there:</p>
+<p>[service]</p>
+<p>automatic-install = yes</p>
+<p>[dentist.local]</p>
+<p>computer-name = UBUNTU25</p>
+<p>Without this file, the join command would cut the hostname down to UBUNTU25-VIRTUA, which is still too long and would cause the join to fail every time.</p>
+<h2 id="step-4---validate-configuration">Step 4 - Validate Configuration</h2>
+<p>Before trying the join I ran testparm, which checks the smb.conf file for any mistakes. Everything came back clean:</p>
+<p><img src="assets/vm-doc/image23.png"/></p>
+<p><em>Figure 23 - testparm output showing Loaded services file OK and Server role: ROLE_DOMAIN_MEMBER with no warnings</em></p>
+<h2 id="step-5---create-the-sssd-directory">Step 5 - Create the sssd Directory</h2>
+<p>This was the actual root cause of all the join failures. Everything else was working fine, but at the very end the join command tried to save a config file to a folder that didn’t exist yet. Once I created the folder, it worked:</p>
+<p>sudo mkdir -p /etc/sssd</p>
+<p>That one missing folder was causing the whole thing to fail at the finish line every single time.</p>
+<h2 id="step-6---join-the-domain">Step 6 - Join the Domain</h2>
+<p>With everything set up, I ran the join command. The professor’s video specifically says to add --membership-software=samba when joining to Server 2025, because Server 2025 uses newer encryption that the default join method can’t handle:</p>
+<p>sudo realm join dentist.local -U Administrator --membership-software=samba</p>
+<p><img src="assets/vm-doc/image24.png"/></p>
+<p><em>Figure 24 - realm join output showing Already joined to this domain, confirming the join worked</em></p>
+<h2 id="step-7---verify-domain-membership">Step 7 - Verify Domain Membership</h2>
+<p>I ran realm list to double check that the join actually went through:</p>
+<p><img src="assets/vm-doc/image25.png"/></p>
+<p><em>Figure 25 - realm list output showing dentist.local as configured: kerberos-member, which means the join was successful</em></p>
+<p>Seeing kerberos-member means the machine is officially part of the domain. The system log also shows the exact line where it joined:</p>
+<p><img src="assets/vm-doc/image26.png"/></p>
+<p><em>Figure 26 - system log output showing Joined UBUNTU25 to dns domain dentist.local</em></p>
+<h2 id="step-8---enable-home-directory-creation">Step 8 - Enable Home Directory Creation</h2>
+<p>The professor’s video says Ubuntu needs one more setting turned on so that when a domain user logs in for the first time, the system automatically makes a home folder for them:</p>
+<p>sudo pam-auth-update</p>
+<p>In the menu that comes up, I checked Create Home Directory on Login and hit OK.</p>
+<h2 id="observations-troubleshooting-2">Observations &amp; Troubleshooting</h2>
+<p>SMB signing conflict: Server 2025 uses a newer way of signing network traffic that the version of Samba on Ubuntu doesn’t support yet. This made the join fail early on. I temporarily turned off SMB signing on SERVER25 through PowerShell, ran the join, then turned it back on right away.</p>
+<p>realmd ignores smb.conf: I spent a long time trying to fix the computer name in smb.conf before realizing it doesn’t matter. The realm join command makes its own config file and never reads smb.conf. The only way to set the computer name for the join is through /etc/realmd.conf.</p>
+<p>Computer name too long: Domain computer names can only be 15 characters. My VM’s full hostname was 20 characters and the join kept failing because of it. Setting computer-name = UBUNTU25 in realmd.conf fixed it.</p>
+<p>Missing folder: This turned out to be the actual problem the whole time. The join was completing successfully but then crashing at the last second because it needed to save a file to a folder that didn’t exist. Running sudo mkdir -p /etc/sssd to create the folder fixed it immediately.</p>
+<p>Old computer accounts: Every failed join attempt left a leftover UBUNTU25 account in Active Directory. Before retrying the join each time, I had to open Active Directory Users and Computers on SERVER25 and delete the old account from the Computers folder first, otherwise the next attempt would conflict with it.</p>
+<h1 id="references">References</h1>
+<p>InfoSec Pat. (2024). How to setup and install Active Directory in Windows Server 2025 [Video]. YouTube. https://www.youtube.com/watch?v=LGTbKrKpPNo</p>
+<p>Darien's Tips. (2024). Join Linux systems to a Windows Active Directory domain [Video]. YouTube. https://www.youtube.com/watch?v=UhYzoyQXXMA</p>
+<p>Microsoft Corporation. (2024). Active Directory Domain Services overview. Microsoft Learn. https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview</p>
+<p>Samba Team. (2024). Samba documentation: Joining a domain. https://www.samba.org/samba/docs/current/man-html/smb.conf.5.html</p>
+<p>Ubuntu Community. (2024). Ubuntu 24.04 LTS documentation: Network configuration. https://ubuntu.com/server/docs/network-configuration</p>
+<p>Anthropic. (2026). Claude (claude-sonnet-4-6) [Large language model]. Used as an AI assistant for troubleshooting and documentation guidance during lab work. https://www.anthropic.com</p>
+<h1 id="independent-work">Independent Work</h1>
+<p><em>[This section is reserved for self-guided exploration and experiments done outside of directed assignments. Entries will be added throughout the semester.]</em></p>
+</div>
+<p class="doc-source">Original file: <a href="3_CIS3367 Living VM Document.docx">CIS3367 Living VM Document-2.docx</a> (Word .docx)</p></div>
+</div>
+</div>
+</div>
+<div id="sidebar">
+<div class="section_header">
       VM Class Work
     </div>
-    <ul id="page_list">
-        <li id="page_459803" class="page current">
-          <a class="page_url" href="vm-class-work_living-vm-document.html">
-            <span class="name">Living VM Document</span>
-          </a>
-        </li>
-    </ul>
-  </div>
+<ul id="page_list">
+<li class="page current" id="page_459803">
+<a class="page_url" href="vm-class-work_living-vm-document.html">
+<span class="name">Living VM Document</span>
+</a>
+</li>
+</ul>
 </div>
-
-
+</div>
 </body>
 </html>
