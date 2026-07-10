@@ -1,0 +1,91 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <title>Lab 5: Conducting Forensic Investigations on Windows Systems -- Digital Forensics</title>
+  <link href="eportfolio.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container">
+  <div id="header">
+    <a href="#skip_navigation" id="skip_navigation_link">Skip Navigation</a>
+    <a href="http://www.instructure.com" title="Created with Canvas"><img class="logo" src="logo.svg" alt="logo"/></a>
+    <h1>Lab 5: Conducting Forensic Investigations on Windows Systems</h1>
+    <h2><a href="labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html">Digital Forensics</a> &#187; <a href="labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html">Labs</a></h2>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+  <div id="nav-level2">
+    <ul>
+      <li class="current"><a href="labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html">Labs</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div>
+  <div id="content">
+    <a name="skip_navigation"></a>
+    <h2>Lab 5: Conducting Forensic Investigations on Windows Systems</h2>
+    <div id="page_content">
+        
+<div class="section read_only" id="page_section_0">
+  <div class="section_content">
+        <div style="text-align: center;" class="attachment">
+            <a href="4_Conducting Forensic Investigations on Windows Systems (4e) - Maxwell King (1).pdf">
+              Click here to Download <span class="filename">Conducting Forensic Investigations on Windows Systems (4e) - Maxwell King (1).pdf</span>
+            </a>
+        </div>
+  </div>
+</div>
+
+        
+<div class="section " id="page_section_1">
+  <div class="section_content">
+        <p data-start="7271" data-end="7747">This lab involved collecting forensic evidence from a live Windows machine and a Windows drive image. The challenge was that useful evidence in Windows can be found in many different places. Some data can be found through live system tools, some through command line utilities, and some through the registry or drive image artifacts. Instead of searching for only one file, this lab involved gathering smaller pieces of data and learning how they can support an investigation.</p><p data-start="7749" data-end="8303">In the first part of the lab, I used Task Manager and Resource Monitor to collect information. Task Manager showed running processes and the file paths connected to them, while Resource Monitor showed listening ports and network connections. This was helpful because live analysis can show what is currently happening on the system. I also used fsutil to get details about the C: drive and the USN journal. The USN journal was interesting because it can provide information about file system activity, including file creation, deletion, and modification.</p><p data-start="8305" data-end="8786">In the second part of the lab, I used Registry Editor to explore important locations in the Windows registry. I checked the Windows installation time, default network interface values, Winlogon keys, ShellBags, and RecentDocs. This showed that a lot of user and system activity can be tracked through the registry. RecentDocs can reveal files that were viewed, while ShellBags can reveal folders that were opened. These artifacts can help build a history of activity on the system.</p><p data-start="8788" data-end="9268">In the applied section, I used Paraben’s E3 to examine a Windows hard drive image. I reviewed sorted files, suspicious image files, shortcut files, installed programs, VPN evidence, user folders, browser history, and keyword searches. Shortcut files were helpful because link files can show where a file was located on the computer and whether it may have been opened. Browser history and keyword searches were also useful because they can show user intent or suspicious activity.</p><p data-start="9270" data-end="9832">What I learned most is that Windows forensics is not just about files. Windows creates many artifacts that can show what a user did, what programs were installed, what network connections existed, and what files may have been accessed. I also learned the difference between live analysis and drive image analysis. Live analysis shows current activity, while a drive image allows the investigator to review the system safely without changing the original evidence. This lab helped me understand why Windows computers are such a common source of forensic evidence.</p>
+  </div>
+</div>
+
+    </div>
+  </div>
+  <div id="sidebar">
+    <div class="section_header">
+      Labs
+    </div>
+    <ul id="page_list">
+        <li id="page_454511" class="page ">
+          <a class="page_url" href="labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html">
+            <span class="name">Lab 1: Applying the Daubert Standard to Forensic Evidence</span>
+          </a>
+        </li>
+        <li id="page_463843" class="page ">
+          <a class="page_url" href="labs_lab-2-detecting-the-use-of-steganography-in-forensic-evidence.html">
+            <span class="name">Lab 2: Detecting the Use of Steganography in Forensic Evidence</span>
+          </a>
+        </li>
+        <li id="page_463851" class="page ">
+          <a class="page_url" href="labs_lab-3-recovering-deleted-and-damaged-files.html">
+            <span class="name">Lab 3: Recovering Deleted and Damaged Files</span>
+          </a>
+        </li>
+        <li id="page_463853" class="page current">
+          <a class="page_url" href="labs_lab-5-conducting-forensic-investigations-on-windows-systems.html">
+            <span class="name">Lab 5: Conducting Forensic Investigations on Windows Systems</span>
+          </a>
+        </li>
+        <li id="page_463855" class="page ">
+          <a class="page_url" href="labs_lab-7-conducting-forensic-investigations-on-email-and-chat-logs.html">
+            <span class="name">Lab 7: Conducting Forensic Investigations on Email and Chat Logs</span>
+          </a>
+        </li>
+        <li id="page_463857" class="page ">
+          <a class="page_url" href="labs_lab-8-conducting-forensic-investigations-of-mobile-devices.html">
+            <span class="name">Lab 8: Conducting Forensic Investigations of Mobile Devices</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+</div>
+
+
+</body>
+</html>

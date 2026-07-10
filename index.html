@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maxwell King — Coursework Index</title>
+<meta name="description" content="Coursework portfolio index for Maxwell King — Architecting Operating System Security and Digital Forensics." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14181c;
+    --ink-soft:#1d2329;
+    --paper:#ece4d0;
+    --paper-dim:#ded5bd;
+    --amber:#b8862b;
+    --amber-bright:#d6a445;
+    --teal:#3e8e85;
+    --teal-bright:#4faaa0;
+    --stamp-red:#9c3b3b;
+    --line: rgba(236,228,208,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .noise{
+    position:fixed; inset:0; pointer-events:none; opacity:0.05; mix-blend-mode:overlay; z-index:1;
+  }
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 28px;
+    position:relative; z-index:2;
+  }
+  header.top{
+    padding:56px 0 20px;
+    border-bottom:1px solid var(--line);
+  }
+  .byline{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--amber-bright);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .byline::before{
+    content:"";
+    width:7px;height:7px;border-radius:50%;
+    background:var(--teal-bright);
+    box-shadow:0 0 8px var(--teal-bright);
+  }
+  h1.hero{
+    font-family:'Fraunces',serif;
+    font-weight:560;
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    margin:22px 0 18px;
+    max-width:15ch;
+  }
+  h1.hero em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--paper-dim);
+  }
+  p.sub{
+    max-width:52ch;
+    font-size:1.02rem;
+    line-height:1.6;
+    color:#c9c1ab;
+    margin:0 0 40px;
+  }
+  .name-tag{
+    display:inline-flex;
+    align-items:baseline;
+    gap:10px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    color:#8f9499;
+    padding-bottom:44px;
+  }
+  .name-tag strong{
+    color:var(--paper);
+    font-weight:500;
+  }
+
+  .files{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:26px;
+    padding:48px 0 30px;
+  }
+  @media (max-width:760px){
+    .files{grid-template-columns:1fr;}
+  }
+
+  .folder{
+    position:relative;
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:3px;
+    padding:30px 26px 26px;
+    box-shadow:0 18px 40px -18px rgba(0,0,0,0.55);
+    transform:translateY(0);
+    transition:transform .35s ease, box-shadow .35s ease;
+    border-top:5px solid var(--tab-color, var(--amber));
+  }
+  .folder:hover{
+    transform:translateY(-5px);
+    box-shadow:0 26px 50px -16px rgba(0,0,0,0.6);
+  }
+  .folder.forensics{--tab-color:var(--amber);}
+  .folder.systems{--tab-color:var(--teal);}
+
+  .folder .tab{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:#6b6350;
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:14px;
+  }
+  .folder .tab .n{color:var(--tab-color, var(--amber)); font-weight:500;}
+
+  .folder h2{
+    font-family:'Fraunces',serif;
+    font-weight:560;
+    font-size:1.5rem;
+    margin:0 0 10px;
+    line-height:1.2;
+  }
+  .folder p.desc{
+    font-size:0.92rem;
+    line-height:1.55;
+    color:#3f3a2e;
+    margin:0 0 20px;
+  }
+
+  .stamp{
+    position:absolute;
+    top:22px; right:22px;
+    width:56px; height:56px;
+    border-radius:50%;
+    border:2px solid var(--tab-color, var(--amber));
+    display:flex; align-items:center; justify-content:center;
+    transform:rotate(-14deg);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:8px;
+    letter-spacing:0.05em;
+    text-align:center;
+    color:var(--tab-color, var(--amber));
+    line-height:1.2;
+    opacity:0.85;
+  }
+
+  ul.exhibits{
+    list-style:none;
+    margin:0 0 24px;
+    padding:0;
+    border-top:1px dashed #b8ac8c;
+  }
+  ul.exhibits li{
+    border-bottom:1px dashed #b8ac8c;
+  }
+  ul.exhibits a{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    padding:10px 2px;
+    color:#26241c;
+    text-decoration:none;
+    font-size:0.89rem;
+    transition:color .15s ease, padding-left .15s ease;
+  }
+  ul.exhibits a:hover{
+    color:var(--tab-color, var(--amber));
+    padding-left:6px;
+  }
+  ul.exhibits a .idx{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.78rem;
+    color:#8a806a;
+    flex-shrink:0;
+  }
+
+  .open-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--paper);
+    background:var(--ink);
+    padding:11px 18px;
+    border-radius:2px;
+    text-decoration:none;
+    transition:background .2s ease, gap .2s ease;
+  }
+  .open-btn:hover{
+    background:var(--tab-color, var(--amber));
+    color:var(--ink);
+    gap:12px;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:32px 0 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:#7c8288;
+  }
+  footer a{color:var(--teal-bright); text-decoration:none;}
+  footer a:hover{text-decoration:underline;}
+
+  @media (prefers-reduced-motion: reduce){
+    .folder, .open-btn, ul.exhibits a{transition:none;}
+  }
+</style>
+</head>
+<body>
+<svg class="noise" width="100%" height="100%">
+  <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter>
+  <rect width="100%" height="100%" filter="url(#n)"/>
+</svg>
+
+<div class="wrap">
+  <header class="top">
+    <div class="byline">Coursework Index</div>
+    <h1 class="hero">If it runs, it can be <em>secured</em>. If it happened, it can be <em>proven</em>.</h1>
+    <p class="sub">Two open case files from my cybersecurity coursework — one in hardening the systems that run, one in reconstructing what happened after the fact. Each links out to the original labs, papers, and working documents.</p>
+    <div class="name-tag">Maintained by <strong>Maxwell King</strong> · <a href="https://github.com/Catcam-fun" style="color:inherit;">github.com/Catcam-fun</a></div>
+  </header>
+
+  <section class="files">
+    <article class="folder systems">
+      <div class="stamp">SEC<br/>+<br/>OPS</div>
+      <div class="tab"><span>CIS 3367</span><span class="n">FILE NO. 01</span></div>
+      <h2>Architecting Operating System Security</h2>
+      <p class="desc">Group papers on IoT and OS security, a living VM build document, personal Security+/TryHackMe cert work, and independent learning objectives.</p>
+      <ul class="exhibits">
+        <li><a href="architecting-os-security/vm-class-work_living-vm-document.html"><span class="idx">01</span> VM Class Work — Living VM Document</a></li>
+        <li><a href="architecting-os-security/group-projects_paper-1-internet-of-things-security-operating-systems-and-system-design.html"><span class="idx">02</span> Paper 1 — IoT Security, OS &amp; System Design</a></li>
+        <li><a href="architecting-os-security/group-projects_paper-2-cybersecurity-standards-in-operating-systems-summary-and-analysis.html"><span class="idx">03</span> Paper 2 — Cybersecurity Standards in OS</a></li>
+        <li><a href="architecting-os-security/personal-project-slash-tryhackme-pre-security-cert-and-sec+-introduction_personal-project-slash-tryhackme-pre-security-cert-and-sec+-introduction.html"><span class="idx">04</span> Personal Project — TryHackMe &amp; Security+</a></li>
+        <li><a href="architecting-os-security/student-learning-objectives-slash-personal-work-documentation_slos-slash-independent-work-documents.html"><span class="idx">05</span> Independent Work — Student Learning Objectives</a></li>
+      </ul>
+      <a class="open-btn" href="architecting-os-security/vm-class-work_living-vm-document.html">Open File →</a>
+    </article>
+
+    <article class="folder forensics">
+      <div class="stamp">EXHIBIT<br/>ON<br/>FILE</div>
+      <div class="tab"><span>DIGITAL FORENSICS</span><span class="n">FILE NO. 02</span></div>
+      <h2>Digital Forensics</h2>
+      <p class="desc">Lab work applying forensic method and legal standard to digital evidence — imaging, recovery, and investigation across Windows, email/chat, and mobile sources.</p>
+      <ul class="exhibits">
+        <li><a href="digital-forensics/labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html"><span class="idx">01</span> Lab 1 — Applying the Daubert Standard</a></li>
+        <li><a href="digital-forensics/labs_lab-2-detecting-the-use-of-steganography-in-forensic-evidence.html"><span class="idx">02</span> Lab 2 — Detecting Steganography</a></li>
+        <li><a href="digital-forensics/labs_lab-3-recovering-deleted-and-damaged-files.html"><span class="idx">03</span> Lab 3 — Recovering Deleted &amp; Damaged Files</a></li>
+        <li><a href="digital-forensics/labs_lab-5-conducting-forensic-investigations-on-windows-systems.html"><span class="idx">04</span> Lab 5 — Investigations on Windows Systems</a></li>
+        <li><a href="digital-forensics/labs_lab-7-conducting-forensic-investigations-on-email-and-chat-logs.html"><span class="idx">05</span> Lab 7 — Investigations on Email &amp; Chat Logs</a></li>
+        <li><a href="digital-forensics/labs_lab-8-conducting-forensic-investigations-of-mobile-devices.html"><span class="idx">06</span> Lab 8 — Investigations of Mobile Devices</a></li>
+      </ul>
+      <a class="open-btn" href="digital-forensics/labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html">Open File →</a>
+    </article>
+  </section>
+
+  <footer>
+    <span>Updated July 2026</span>
+    <a href="https://github.com/Catcam-fun">View source on GitHub ↗</a>
+  </footer>
+</div>
+</body>
+</html>
