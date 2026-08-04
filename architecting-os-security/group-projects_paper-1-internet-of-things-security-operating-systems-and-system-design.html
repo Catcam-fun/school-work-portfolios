@@ -1,73 +1,28 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
-<title>Paper 1 - Internet of Things Security, Operating Systems, and System Design -- Architecting Operating System Security</title>
-<link href="eportfolio.css" media="screen" rel="stylesheet" type="text/css"/><link href="enhancements.css" media="screen" rel="stylesheet" type="text/css"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Internet of Things Security, Operating Systems, and System Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="../site.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div id="container">
-<div id="header">
-<a href="#skip_navigation" id="skip_navigation_link">Skip Navigation</a>
-<a href="http://www.instructure.com" title="Created with Canvas"><img alt="logo" class="logo" src="logo.svg"/></a>
-<h1>Paper 1 - Internet of Things Security, Operating Systems, and System Design</h1>
-<h2><a href="vm-class-work_living-vm-document.html">Architecting Operating System Security</a> » <a href="group-projects_paper-1-internet-of-things-security-operating-systems-and-system-design.html">Group Projects</a></h2>
-<div class="clear"></div>
-</div>
-<div class="clear"></div>
-<div id="nav-level2">
-<ul>
-<li class=""><a href="vm-class-work_living-vm-document.html">VM Class Work</a></li>
-<li class="current"><a href="group-projects_paper-1-internet-of-things-security-operating-systems-and-system-design.html">Group Projects</a></li>
-<li class=""><a href="personal-project-slash-tryhackme-pre-security-cert-and-sec+-introduction_personal-project-slash-tryhackme-pre-security-cert-and-sec+-introduction.html">Personal Project / TryHackMe Pre-Security cert and Sec+ Introduction</a></li>
-<li class=""><a href="student-learning-objectives-slash-personal-work-documentation_slos-slash-independent-work-documents.html">Student Learning Objectives / Personal Work Documentation</a></li>
-</ul>
-<div class="clear"></div>
-</div>
-<div id="content">
-<a name="skip_navigation"></a>
-<h2>Paper 1 - Internet of Things Security, Operating Systems, and System Design</h2>
-<div id="page_content">
-<div class="section read_only" id="page_section_0">
-<div class="section_content"><div class="doc-render">
-<h1>Internet of Things Security, Operating Systems, and System Design</h1>
-<table>
-<colgroup>
-<col style="width: 29%"/>
-<col style="width: 70%"/>
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Category</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Students</td>
-<td>Jorgen Eikeseth, Michael Brennan, Maxwell King</td>
-</tr>
-<tr class="even">
-<td>Course</td>
-<td>CIS3367: Architecting Operating Systems Security</td>
-</tr>
-<tr class="odd">
-<td>Assignment</td>
-<td>Group Paper 1: Internet of Things Security, Operating Systems, and System Design</td>
-</tr>
-<tr class="even">
-<td>Professor</td>
-<td>Thomas Moore-Pizon</td>
-</tr>
-<tr class="odd">
-<td>Date</td>
-<td>March 3, 2026</td>
-</tr>
-</tbody>
-</table>
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../index.html">&larr; Portfolio</a>
+    <div class="byline">Architecting Operating System Security</div>
+    <h1 class="title">Internet of Things Security, Operating Systems, and System Design</h1>
+    <div class="meta">
+      <span><strong>Students</strong> Jorgen Eikeseth, Michael Brennan, Maxwell King</span>
+      <span><strong>Course</strong> CIS3367</span>
+      <span><strong>Date</strong> March 3, 2026</span>
+    </div>
+  </header>
+
+  <div class="card teal">
 <h1 id="introduction">Introduction</h1>
 <p>Rapidly moving, the Internet of Things reshapes how today’s tech frameworks operate. Instead of working alone, everyday things such as sensors, cameras, household tools, factory gear, or embedded computing systems that communicate with each other through the internet. Information moves between them without needing human help, capturing details while adjusting on their own. As a result, people and companies gain clearer views of surroundings, streamline tasks, boosting effectiveness behind the scenes (Al-Boghdady et al., 2021). From hospitals to farms, transit networks to production lines, even urban layouts at large scale now rely heavily on these connected systems.</p>
 <p>Though helpful, such tools bring tough digital risks along. With growing numbers of devices joining networks, weak spots multiply fast. Often built for ease, speed, or low price, many smart devices ignore safety at the core. Because of this, safeguards either come late or show up too light to help. Despite their growing numbers, many IoT devices struggle with basic protection due to weak built-in hardware. Traditional machines like desktops or data centers usually pack more computing power than most smart sensors or household devices. Running on tiny chips and tight energy budgets, these compact units demand code that uses minimal resources while staying dependable. Still, fitting strong encryption into such narrow boundaries becomes a serious challenge for engineers building them.</p>
@@ -98,28 +53,9 @@
 <p>Zikria, Y. B., Kim, S. W., Hahm, O., Afzal, M. K., &amp; Aalsalem, M. Y. (2019). Internet of Things (IoT) operating systems management: Opportunities, challenges, and solution. <em>Sensors, 19</em>(8), 1793. <a href="https://doi.org/10.3390/s19081793">https://doi.org/10.3390/s19081793</a></p>
 <p>Al-Boghdady, A., Wassif, K., &amp; El-Ramly, M. (2021). The presence, trends, and causes of security vulnerabilities in operating systems of IoT’s low-end devices. <em>Sensors, 21</em>(7), 2329. <a href="https://doi.org/10.3390/s21072329">https://doi.org/10.3390/s21072329</a></p>
 <p>Forouzan, B. A. (2022). <em>Data communications and networking with TCP/IP protocol suite</em> (6th ed.). McGraw Hill.</p>
-</div>
-<p class="doc-source">Original file: <a href="1_jeikeseth_mbrennan_mking_cis3367groupproject1.docx">jeikeseth_mbrennan_mking_cis3367groupproject1.docx</a> (Word .docx)</p></div>
-</div>
-</div>
-</div>
-<div id="sidebar">
-<div class="section_header">
-      Group Projects
-    </div>
-<ul id="page_list">
-<li class="page current" id="page_460159">
-<a class="page_url" href="group-projects_paper-1-internet-of-things-security-operating-systems-and-system-design.html">
-<span class="name">Paper 1 - Internet of Things Security, Operating Systems, and System Design</span>
-</a>
-</li>
-<li class="page" id="page_464251">
-<a class="page_url" href="group-projects_paper-2-cybersecurity-standards-in-operating-systems-summary-and-analysis.html">
-<span class="name">Paper 2 - Cybersecurity Standards in Operating Systems: Summary and Analysis</span>
-</a>
-</li>
-</ul>
-</div>
+
+<div class="src">Original file: <a href="1_jeikeseth_mbrennan_mking_cis3367groupproject1.docx">jeikeseth_mbrennan_mking_cis3367groupproject1.docx</a> (Word .docx)</div>
+  </div>
 </div>
 </body>
 </html>

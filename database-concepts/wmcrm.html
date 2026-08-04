@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wallingford Motors CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="../site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../index.html">&larr; Portfolio</a>
+    <div class="byline">Database Concepts</div>
+    <h1 class="title">Wallingford Motors CRM</h1>
+    <div class="meta">
+      <span><strong>Student</strong> Maxwell King</span>
+      <span><strong>Course</strong> COP 2937</span>
+      <span><strong>Term</strong> Spring 2026</span>
+    </div>
+  </header>
+
+  <div class="card red">
+<p>This is a database I built up week by week in Database Concepts, working through a car dealership system called Wallingford Motors. Each week added something: a new table, a new way to query the data, working toward a system that tracks customers, their contact history, salespeople, and vehicle inventory. It's more a running record of coursework than one finished project.</p>
+
+<h1 id="schema">Schema</h1>
+<p>Five tables: <code>Customer</code>, <code>Contact</code>, <code>Phone_Number</code>, <code>Salesperson</code>, and <code>Vehicle</code>. A customer can have multiple contacts (visits, calls, follow-ups) and multiple phone numbers on file. Salespeople are tied to vehicles through an <code>InventoryID</code>.</p>
+
+<h1 id="queries">Queries</h1>
+<p>A few representative queries from across the semester, showing the progression from basic filtering to joined, parameterized reports.</p>
+
+<h2>Filtering and Sorting</h2>
+<p>An early exercise in basic filtering and sorting: pull customers past a certain ID, sorted by last name in reverse order.</p>
+<pre><code>SELECT
+    Customer.CustomerID,
+    Customer.LastName,
+    Customer.FirstName
+FROM
+    Customer
+WHERE
+    (((Customer.CustomerID) > 2))
+ORDER BY
+    Customer.LastName DESC;</code></pre>
+
+<h2>Customer Contact History</h2>
+<p>A step up: join Customer to Contact to pull the full contact history, date, type, and remarks, for one specific customer, ordered chronologically.</p>
+<pre><code>SELECT
+    Customer.LastName,
+    Customer.FirstName,
+    Contact.ContactDate,
+    Contact.ContactType,
+    Contact.Remarks
+FROM
+    Customer
+    INNER JOIN Contact ON Customer.CustomerID = Contact.CustomerID
+WHERE
+    (((Customer.CustomerID) = 2))
+ORDER BY
+    Contact.ContactDate;</code></pre>
+
+<h2>Customer Contact History, Parameterized</h2>
+<p>Same report, but turned into a parameter query. Instead of hardcoding a customer's ID into the SQL, it prompts for one at runtime, so the same query works for any customer without editing the SQL each time.</p>
+<pre><code>SELECT
+    Customer.LastName,
+    Customer.FirstName,
+    Contact.ContactDate,
+    Contact.ContactType,
+    Contact.Remarks
+FROM
+    Customer
+    INNER JOIN Contact ON Customer.CustomerID = Contact.CustomerID
+WHERE
+    (((Customer.CustomerID) = [Enter the CustomerID Number:]))
+ORDER BY
+    Contact.ContactDate;</code></pre>
+
+<div class="src">Original file: <a href="WMCRM.accdb">WMCRM.accdb</a> (Access database)</div>
+
+  </div>
+</div>
+</body>
+</html>

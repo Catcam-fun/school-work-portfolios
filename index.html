@@ -96,7 +96,7 @@
 
   .files{
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
     gap:26px;
     padding:48px 0 30px;
   }
@@ -121,6 +121,7 @@
   }
   .folder.forensics{--tab-color:var(--amber);}
   .folder.systems{--tab-color:var(--teal);}
+  .folder.database{--tab-color:var(--stamp-red);}
 
   .folder .tab{
     font-family:'IBM Plex Mono',monospace;
@@ -280,6 +281,18 @@
         <li><a href="digital-forensics/labs_lab-8-conducting-forensic-investigations-of-mobile-devices.html"><span class="idx">06</span> Lab 8 — Investigations of Mobile Devices</a></li>
       </ul>
       <a class="open-btn" href="digital-forensics/labs_lab-1-applying-the-daubert-standard-to-forensic-evidence.html">Open File →</a>
+    </article>
+
+    <article class="folder database">
+      <div class="stamp">DB<br/>DESIGN</div>
+      <div class="tab"><span>COP 2937</span><span class="n">FILE NO. 03</span></div>
+      <h2>Database Concepts</h2>
+      <p class="desc">A three-phase relational design project for a doctor's office, plus a semester of weekly SQL and Access practice building a car dealership CRM.</p>
+      <ul class="exhibits">
+        <li><a href="database-concepts/doctors-office.html"><span class="idx">01</span> Doctor's Office — Final Project (ERD, Schema, Queries)</a></li>
+        <li><a href="database-concepts/wmcrm.html"><span class="idx">02</span> Wallingford Motors CRM — Weekly Coursework</a></li>
+      </ul>
+      <a class="open-btn" href="database-concepts/doctors-office.html">Open File →</a>
     </article>
   </section>
 

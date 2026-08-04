@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Doctor's Office Database System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="../site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../index.html">&larr; Portfolio</a>
+    <div class="byline">Database Concepts</div>
+    <h1 class="title">Doctor's Office Database System</h1>
+    <div class="meta">
+      <span><strong>Student</strong> Maxwell King</span>
+      <span><strong>Course</strong> COP 2937</span>
+      <span><strong>Term</strong> Spring 2026</span>
+    </div>
+  </header>
+
+  <div class="card red">
+<p>This is a database I built for a country doctor's office as the final project for Database Concepts. The office has three doctors and about a hundred patients, and needs to track appointments, the services those doctors perform, the supplies each service uses, and which suppliers provide those supplies. The project went in three phases: design an ER diagram, convert that into table specs with data types and keys, then build the actual thing in Access and write queries a real office would want, like who's on the schedule today or which supplies get used the most.</p>
+
+<h1 id="phase-1">Phase 1: Entity Relationship Diagram</h1>
+<p>The assignment asked for an ERD a non-technical office manager could actually follow, so before anything gets built, the diagram has to communicate the shape of the data on its own. Six entities came out of the scenario: Doctors, Patients, Services, Supplies, Suppliers, and Appointments. Three of those relationships are many-to-many (an appointment can include multiple services, a service can use multiple supplies, a supply can come from multiple suppliers), so the diagram resolves each of those with a junction table rather than trying to force a direct link.</p>
+<img src="assets/DoctorsOffice-ERD.png" alt="Entity relationship diagram for the DoctorsOffice database" />
+<p class="fallback-link">Original file: <a href="DoctorsOffice-ERD.vsdx">DoctorsOffice-ERD.vsdx</a> (Visio)</p>
+
+<h1 id="phase-2">Phase 2: Table Specification</h1>
+<p>The assignment said this phase is communication between system designers and programmers. Because of that framing, this document is written on the assumption that little information about how the database should be built is warranted and focuses on structure instead.</p>
+<p>This converts the Phase 1 entity relationship diagram into table definitions for the Access database: each table's fields, data types, and key relationships.</p>
+
+<h3>DOCTOR</h3>
+<table>
+<thead><tr><th>Field</th><th>Data Type</th><th>Key</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><code>DoctorID</code></td><td>AutoNumber</td><td>PK</td><td></td></tr>
+<tr><td><code>FirstName</code></td><td>Short Text (50)</td><td></td><td></td></tr>
+<tr><td><code>LastName</code></td><td>Short Text (50)</td><td></td><td></td></tr>
+<tr><td><code>Specialty</code></td><td>Short Text (50)</td><td></td><td></td></tr>
+<tr><td><code>Phone</code></td><td>Short Text (15)</td><td></td><td></td></tr>
+</tbody>
+</table>
+
+<h3>PATIENT</h3>
+<table>
+<thead><tr><th>Field</th><th>Data Type</th><th>Key</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><code>PatientID</code></td><td>AutoNumber</td><td>PK</td><td></td></tr>
+<tr><td><code>FirstName</code></td><td>Short Text (50)</td><td></td><td></td></tr>
+<tr><td><code>LastName</code></td><td>Short Text (50)</td><td></td><td></td></tr>
+<tr><td><code>DOB</code></td><td>Date/Time</td><td></td><td></td></tr>
+<tr><td><code>Phone</code></td><td>Short Text (15)</td><td></td><td></td></tr>
+<tr><td><code>Address</code></td><td>Short Text (100)</td><td></td><td></td></tr>
+</tbody>
+</table>
+
+<h3>APPOINTMENT</h3>
+<table>
+<thead><tr><th>Field</th><th>Data Type</th><th>Key</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><code>AppointmentID</code></td><td>AutoNumber</td><td>PK</td><td></td></tr>
+<tr><td><code>DoctorID</code></td><td>Number (Long Integer)</td><td>FK</td><td>References DOCTOR.DoctorID</td></tr>
+<tr><td><code>PatientID</code></td><td>Number (Long Integer)</td><td>FK</td><td>References PATIENT.PatientID</td></tr>
+<tr><td><code>ApptDate</code></td><td>Date/Time</td><td></td><td></td></tr>
+<tr><td><code>ApptTime</code></td><td>Date/Time</td><td></td><td></td></tr>
+</tbody>
+</table>
+
+<h3>SERVICE</h3>
+<table>
+<thead><tr><th>Field</th><th>Data Type</th><th>Key</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><code>ServiceID</code></td><td>AutoNumber</td><td>PK</td><td></td></tr>
+<tr><td><code>ServiceName</code></td><td>Short Text (50)</td><td></td><td></td></tr>
+<tr><td><code>StandardCost</code></td><td>Currency</td><td></td><td>List price for the service</td></tr>
+</tbody>
+</table>
+
+<h3>APPOINTMENT_SERVICE (junction table)</h3>
+<table>
+<thead><tr><th>Field</th><th>Data Type</th><th>Key</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><code>AppointmentID</code></td><td>Number (Long Integer)</td><td>PK, FK</td><td>References APPOINTMENT.AppointmentID</td></tr>
+<tr><td><code>ServiceID</code></td><td>Number (Long Integer)</td><td>PK, FK</td><td>References SERVICE.ServiceID</td></tr>
+<tr><td><code>AmountCharged</code></td><td>Currency</td><td></td><td>Actual cost billed to the patient for this service at this visit</td></tr>
+</tbody>
+</table>
+<p><em>Composite primary key: AppointmentID and ServiceID together.</em></p>
+<h3>SUPPLY</h3>
+<table>
+<thead><tr><th>Field</th><th>Data Type</th><th>Key</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><code>SupplyID</code></td><td>AutoNumber</td><td>PK</td><td></td></tr>
+<tr><td><code>SupplyName</code></td><td>Short Text (50)</td><td></td><td></td></tr>
+<tr><td><code>UnitCost</code></td><td>Currency</td><td></td><td></td></tr>
+<tr><td><code>QtyOnHand</code></td><td>Number (Integer)</td><td></td><td></td></tr>
+</tbody>
+</table>
+
+<h3>SERVICE_SUPPLY (junction table)</h3>
+<table>
+<thead><tr><th>Field</th><th>Data Type</th><th>Key</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><code>ServiceID</code></td><td>Number (Long Integer)</td><td>PK, FK</td><td>References SERVICE.ServiceID</td></tr>
+<tr><td><code>SupplyID</code></td><td>Number (Long Integer)</td><td>PK, FK</td><td>References SUPPLY.SupplyID</td></tr>
+<tr><td><code>QtyUsed</code></td><td>Number (Integer)</td><td></td><td>Typical quantity of this supply used per service</td></tr>
+</tbody>
+</table>
+<p><em>Composite primary key: ServiceID and SupplyID together.</em></p>
+<h3>SUPPLIER</h3>
+<table>
+<thead><tr><th>Field</th><th>Data Type</th><th>Key</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><code>SupplierID</code></td><td>AutoNumber</td><td>PK</td><td></td></tr>
+<tr><td><code>SupplierName</code></td><td>Short Text (50)</td><td></td><td></td></tr>
+<tr><td><code>ContactName</code></td><td>Short Text (50)</td><td></td><td></td></tr>
+<tr><td><code>Phone</code></td><td>Short Text (15)</td><td></td><td></td></tr>
+</tbody>
+</table>
+
+<h3>SUPPLIER_SUPPLY (junction table)</h3>
+<table>
+<thead><tr><th>Field</th><th>Data Type</th><th>Key</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><code>SupplierID</code></td><td>Number (Long Integer)</td><td>PK, FK</td><td>References SUPPLIER.SupplierID</td></tr>
+<tr><td><code>SupplyID</code></td><td>Number (Long Integer)</td><td>PK, FK</td><td>References SUPPLY.SupplyID</td></tr>
+<tr><td><code>SupplierPrice</code></td><td>Currency</td><td></td><td>Price this supplier charges for the supply</td></tr>
+</tbody>
+</table>
+<p><em>Composite primary key: SupplierID and SupplyID together.</em></p>
+<h3>Relationship Summary</h3>
+<p>Every relationship is one to many, going from the parent table to the child table.</p>
+<table>
+<thead><tr><th>Parent Table</th><th>Child Table</th><th>Join Field</th></tr></thead>
+<tbody>
+<tr><td><code>DOCTOR</code></td><td><code>APPOINTMENT</code></td><td><code>DoctorID</code></td></tr>
+<tr><td><code>PATIENT</code></td><td><code>APPOINTMENT</code></td><td><code>PatientID</code></td></tr>
+<tr><td><code>APPOINTMENT</code></td><td><code>APPOINTMENT_SERVICE</code></td><td><code>AppointmentID</code></td></tr>
+<tr><td><code>SERVICE</code></td><td><code>APPOINTMENT_SERVICE</code></td><td><code>ServiceID</code></td></tr>
+<tr><td><code>SERVICE</code></td><td><code>SERVICE_SUPPLY</code></td><td><code>ServiceID</code></td></tr>
+<tr><td><code>SUPPLY</code></td><td><code>SERVICE_SUPPLY</code></td><td><code>SupplyID</code></td></tr>
+<tr><td><code>SUPPLY</code></td><td><code>SUPPLIER_SUPPLY</code></td><td><code>SupplyID</code></td></tr>
+<tr><td><code>SUPPLIER</code></td><td><code>SUPPLIER_SUPPLY</code></td><td><code>SupplierID</code></td></tr>
+</tbody>
+</table>
+
+<h1 id="phase-3">Phase 3: Building the Database and Queries</h1>
+<p>The last phase was building the actual database in Access, loading in sample data, and writing the five queries the assignment asked for. Below is the SQL behind each one, and what it's actually doing.</p>
+
+<h2>Today's Appointments</h2>
+<p>Lists every patient with an appointment today, using Access's <code>Date()</code> function so it always checks against the current day instead of a hardcoded date.</p>
+<pre><code>SELECT
+    PATIENT.FirstName,
+    PATIENT.LastName,
+    APPOINTMENT.ApptTime
+FROM
+    PATIENT
+    INNER JOIN APPOINTMENT ON PATIENT.PatientID = APPOINTMENT.PatientID
+WHERE
+    APPOINTMENT.ApptDate = Date();</code></pre>
+
+<h2>Most Frequent Patients</h2>
+<p>Counts how many appointments each patient has had and ranks them from most to least, so the office can see who its regulars are.</p>
+<pre><code>SELECT
+    PATIENT.FirstName,
+    PATIENT.LastName,
+    COUNT(APPOINTMENT.AppointmentID) AS VisitCount
+FROM
+    PATIENT
+    INNER JOIN APPOINTMENT ON PATIENT.PatientID = APPOINTMENT.PatientID
+GROUP BY
+    PATIENT.PatientID,
+    PATIENT.FirstName,
+    PATIENT.LastName
+ORDER BY
+    COUNT(APPOINTMENT.AppointmentID) DESC;</code></pre>
+
+<h2>Most Used Service</h2>
+<p>Counts how many times each service has actually been billed across all appointments, ranked from most to least common.</p>
+<pre><code>SELECT
+    SERVICE.ServiceName,
+    COUNT(APPOINTMENT_SERVICE.ServiceID) AS TimesUsed
+FROM
+    SERVICE
+    INNER JOIN APPOINTMENT_SERVICE ON SERVICE.ServiceID = APPOINTMENT_SERVICE.ServiceID
+GROUP BY
+    SERVICE.ServiceID,
+    SERVICE.ServiceName
+ORDER BY
+    COUNT(APPOINTMENT_SERVICE.ServiceID) DESC;</code></pre>
+
+<h2>Top Suppliers</h2>
+<p>This one chains four tables together: from a supplier, to what they supply, to how often that supply actually gets used in a service. That's a different question than "which supplier stocks the most items", it's which supplier provides the supplies that get used most, which is what the assignment was actually asking for.</p>
+<pre><code>SELECT
+    SUPPLIER.SupplierName,
+    SUPPLY.SupplyName,
+    COUNT(SERVICE_SUPPLY.SupplyID) AS TimesUsed
+FROM
+    (
+        SUPPLIER
+        INNER JOIN SUPPLIER_SUPPLY ON SUPPLIER.SupplierID = SUPPLIER_SUPPLY.SupplierID
+    )
+    INNER JOIN (
+        SUPPLY
+        INNER JOIN SERVICE_SUPPLY ON SUPPLY.SupplyID = SERVICE_SUPPLY.SupplyID
+    ) ON SUPPLIER_SUPPLY.SupplyID = SUPPLY.SupplyID
+GROUP BY
+    SUPPLIER.SupplierName,
+    SUPPLY.SupplyName
+ORDER BY
+    COUNT(SERVICE_SUPPLY.SupplyID) DESC;</code></pre>
+
+<h2>Weekly Schedule</h2>
+<p>Lists every appointment for every doctor, sorted by doctor and then by date and time, so it reads like an actual weekly schedule instead of a raw table dump.</p>
+<pre><code>SELECT
+    DOCTOR.FirstName,
+    DOCTOR.LastName,
+    APPOINTMENT.ApptDate,
+    APPOINTMENT.ApptTime,
+    PATIENT.FirstName AS PatientFirstName,
+    PATIENT.LastName AS PatientLastName
+FROM
+    (
+        DOCTOR
+        INNER JOIN APPOINTMENT ON DOCTOR.DoctorID = APPOINTMENT.DoctorID
+    )
+    INNER JOIN PATIENT ON APPOINTMENT.PatientID = PATIENT.PatientID
+ORDER BY
+    DOCTOR.LastName,
+    APPOINTMENT.ApptDate,
+    APPOINTMENT.ApptTime;</code></pre>
+
+<div class="src">Original files:
+<a href="Database_Project_-_Country_Doctor.docx">Database_Project_-_Country_Doctor.docx</a> (assignment instructions),
+<a href="DoctorsOffice_Phase2_Tablespec.docx">DoctorsOffice_Phase2_Tablespec.docx</a> (Word .docx),
+<a href="DoctorsOffice-ERD.vsdx">DoctorsOffice-ERD.vsdx</a> (Visio),
+<a href="DoctorsOffice.accdb">DoctorsOffice.accdb</a> (Access database)
+</div>
+
+  </div>
+</div>
+</body>
+</html>
