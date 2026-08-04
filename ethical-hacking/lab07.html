@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lab 7 - Web Server Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="../site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../index.html">&larr; Portfolio</a>
+    <div class="byline">Ethical Hacking</div>
+    <h1 class="title">Lab 7 - Web Server Log</h1>
+    <div class="meta">
+      <span><strong>Student</strong> Maxwell King</span>
+      <span><strong>Environment</strong> Kali / Metasploitable3 (VirtualBox)</span>
+    </div>
+  </header>
+
+  <div class="card violet">
+<p>This lab was reading through a raw web server access log to answer questions about what happened on the server over about six days.</p>
+
+<h3>What is the date/time range of the log?</h3>
+<p>The log starts on April 19, 2010 at 6:36 AM and ends on April 24, 2010 at 6:51 PM. That is about 6 days worth of web server activity, all in the -0700 timezone.</p>
+
+<h3>Were any proxies involved? If so, which ones?</h3>
+<p>Yes. Looking through the log I could see requests going out to proxyjudge1.proxyfire.net and www.wantsfly.com, both of which are known proxy-related services. There were also CONNECT requests from IPs in the 193.109.122.x range using a tool called pxyscand/2.1, which was being used to scan for open proxies on the server.</p>
+
+<h3>Which pages were clients accessing with GET requests?</h3>
+<p>The pages being accessed with GET requests were /, /feed/, /login/, /signup/, /robots.txt, /wp-admin, and /wp-admin/. Most of the traffic was to /feed/ from what looked like automated feed readers.</p>
+
+<h3>What version of WordPress is being used?</h3>
+<p>WordPress 2.9.2. You can see it in the user-agent string on the wp-cron requests, which shows WordPress/2.9.2 and the site URL.</p>
+
+<h3>Which page(s) is HTTP POST going to?</h3>
+<p>POST requests were going to /wp-cron.php?doing_wp_cron and /signup/. The wp-cron ones are just WordPress running background tasks automatically. The /signup/ POST requests came from the same IP over and over, which looks like someone trying to create a bunch of accounts.</p>
+
+<h3>What proxy scanner was being used?</h3>
+<p>The proxy scanner being used was pxyscand/2.1. It showed up in CONNECT requests trying to reach 72.51.18.254 on port 6677, coming from multiple IPs in the 193.109.122.x range.</p>
+
+<h3>A password was set. What was the ID and password set?</h3>
+<p>The ID was DoomsDay and the password was youcanrap. On April 20 at 7:48 AM, an IP address made a GET request to edit.yahoo.com with the login and password passed directly in the URL. The credentials were sitting in plain text in the log, which is a good example of why you should never pass sensitive information through a GET request.</p>
+
+<h3>What is the name of the bot that accessed the system, and what IP address did it come from?</h3>
+<p>The bot was NaverBot/1.0 and it came from IP 114.111.36.26. NaverBot is a web crawler from the South Korean search engine Naver. It showed up twice in the log, hitting /robots.txt and the homepage to index the site.</p>
+
+<h2>Tools Used</h2>
+<ul>
+<li>Web server access log analysis</li>
+</ul>
+
+<div class="src">Original file: <a href="Lab-07-Web-Server-Log.docx">Lab-07-Web-Server-Log.docx</a> (Word .docx)</div>
+  </div>
+</div>
+</body>
+</html>

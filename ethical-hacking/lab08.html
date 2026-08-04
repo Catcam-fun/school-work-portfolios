@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lab 8 - Database Hacking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="../site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../index.html">&larr; Portfolio</a>
+    <div class="byline">Ethical Hacking</div>
+    <h1 class="title">Lab 8 - Database Hacking</h1>
+    <div class="meta">
+      <span><strong>Student</strong> Maxwell King</span>
+      <span><strong>Environment</strong> Kali / Metasploitable3 (VirtualBox)</span>
+    </div>
+  </header>
+
+  <div class="card violet">
+<p>This lab covered SQL injection against DVWA (Damn Vulnerable Web Application). After pulling a couple system files first, I used <code>' OR '1'='1</code> in the login field to bypass authentication and pull back every user in the database instead of just one.</p>
+<h2>Exercise 1</h2>
+<p>Item 1 – pulling /etc/passwd:</p>
+<p><img src="assets/lab08/image1.png" style="width:6.25in;height:4.10417in" /></p>
+<p>Item 2 – pulling /etc/apache2/ports.conf:</p>
+<p>Ports configured: 80 and 443.</p>
+<p><img src="assets/lab08/image2.png" style="width:6.25in;height:3.90625in" /></p>
+<h2>Exercise 2</h2>
+<p>Item 2 – SQL injection using ' OR '1'='1 in the User ID field:</p>
+<p><img src="assets/lab08/image3.png" style="width:6.25in;height:3.88542in" /></p>
+<p><strong>Why ' OR '1'='1 works</strong></p>
+<p>DVWA takes whatever gets typed into the User ID field and puts it directly into a database query without checking it first. Normally that query is just looking for one row matching the input. Typing ' OR '1'='1 closes off the part of the query expecting that input, then adds an OR condition onto the end. Since 1 always equals 1, that condition is always true, and the OR makes the whole WHERE statement true for every row instead of just one. That is why all five users got returned instead of just one match.</p>
+<p>This is possible because the app trusts user input completely instead of treating it as plain data. OWASP's page on SQL injection and MDN's glossary entry on the same topic both explain it the same way, that unsanitized input gets passed straight into the query instead of being kept separate from it. OWASP lists SQL injection as one of the most common and serious vulnerabilities in web apps because of this, since it can let someone see data they shouldn't or skip a login completely like it did here.</p>
+<h2>References</h2>
+<p>OWASP Foundation. (n.d.). <em>SQL injection</em>. <a href="https://owasp.org/www-community/attacks/SQL_Injection">https://owasp.org/www-community/attacks/SQL_Injection</a></p>
+<p>MDN contributors. (2025, July 18). <em>SQL injection</em>. MDN Web Docs. <a href="https://developer.mozilla.org/en-US/docs/Glossary/SQL_Injection">https://developer.mozilla.org/en-US/docs/Glossary/SQL_Injection</a></p>
+<h2>Tools Used</h2>
+<ul>
+<li>DVWA</li>
+<li>SQL injection</li>
+</ul>
+<div class="src">Original file: <a href="Lab-08-Database-Hacking.docx">Lab-08-Database-Hacking.docx</a> (Word .docx)</div>
+  </div>
+</div>
+</body>
+</html>

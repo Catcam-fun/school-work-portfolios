@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lab 9 - Ethical Hacking Protocols</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="../site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../index.html">&larr; Portfolio</a>
+    <div class="byline">Ethical Hacking</div>
+    <h1 class="title">Lab 9 - Ethical Hacking Protocols</h1>
+    <div class="meta">
+      <span><strong>Student</strong> Maxwell King</span>
+      <span><strong>Environment</strong> Kali / Metasploitable3 (VirtualBox)</span>
+    </div>
+  </header>
+
+  <div class="card violet">
+<p>This lab had two parts: running a SYN flood against the Windows target with hping3 and watching what it did to network usage, then digging through a packet capture for DNS lookups, GET requests, and other details.</p>
+<h2>Exercise 1</h2>
+<p>I ran a SYN flood from my Kali VM against the Windows Metasploitable machine at 192.168.255.2 using hping3. Baseline network usage before the attack:</p>
+<p><img src="assets/lab09/image1.png" style="width:5.20833in;height:4.05208in" /></p>
+<p>Command used:</p>
+<p>sudo hping3 -c 15000 -d 500 -S -w 64 -p 80 --flood --rand-source 192.168.255.2</p>
+<p>This sends 15,000 spoofed SYN packets to port 80 as fast as possible. Network usage after running it for about 30 seconds:</p>
+<p><img src="assets/lab09/image2.png" style="width:4.16667in;height:4.63542in" /></p>
+<h2>Exercise 2</h2>
+<p><strong>1. How many packets does the capture contain?</strong></p>
+<p>2,195 packets.</p>
+<p><img src="assets/lab09/image3.png" style="width:6.25in;height:4.28125in" /></p>
+<p><strong>2. Find and record all the DNS domain requests and all the IP addresses returned.</strong></p>
+<ul>
+<li><p>www.fineandroid.com → 174.138.168.211</p></li>
+<li><p>www.homerchess.com → 82.165.80.40</p></li>
+<li><p>market.android.com → 74.125.137.118</p></li>
+<li><p>twitter.com → 199.59.149.230, 199.59.150.7, 199.59.150.39</p></li>
+<li><p>clients1.google.com → 173.194.37.32–41, 46 (11 IPs)</p></li>
+<li><p>www.gstatic.com → 173.194.37.79</p></li>
+<li><p>fineandroid.com → 174.138.168.211</p></li>
+<li><p>north-america.pool.ntp.org → 173.255.193.172, 209.114.111.1, 169.229.70.95</p></li>
+<li><p>xtra2.gpsonextra.net → 72.51.26.219</p></li>
+<li><p>android.clients.google.com → 74.125.45.100–102, 113, 138, 139</p></li>
+<li><p>diaobaolediaobaole3.googlecode.com → 74.125.137.82</p></li>
+</ul>
+<p><img src="assets/lab09/image4.png" style="width:6.25in;height:4.05208in" /></p>
+<p><strong>3. Record the full URI requests of all the GET requests.</strong></p>
+<ul>
+<li><p>www.fineandroid.com/inputex/index.php?s=/Interface/keinter/a1/A1000012388937/a2/3100120000006441/a3/ERIS/index/xian1234</p></li>
+<li><p>www.google.com/webhp?client=ms-android-verizon-us&amp;source=android-home&amp;sky=mrdr&amp;mnfst=1</p></li>
+<li><p>www.homerchess.com/sd-booster/SD-Booster-v1-eng.html</p></li>
+<li><p>www.google.com/images/nav_logo107.png</p></li>
+<li><p>www.homerchess.com/sd-booster/img/app_logo.png</p></li>
+<li><p>www.homerchess.com/favicon.ico</p></li>
+<li><p>www.google.com/m?client=ms-android-verizon-us&amp;source=android-home</p></li>
+<li><p>www.google.com/images/nycli1.gif</p></li>
+<li><p>www.google.com/extern_js/f/... (long tracking script URL)</p></li>
+<li><p>clients1.google.com/generate_204</p></li>
+<li><p>fineandroid.com/InstallApk/php4sam.php (x2)</p></li>
+<li><p>xtra2.gpsonextra.net/xtra.bin</p></li>
+<li><p>diaobaolediaobaole3.googlecode.com/files/youni.apk (x2)</p></li>
+</ul>
+<p><img src="assets/lab09/image5.png" style="width:6.25in;height:4.26042in" /></p>
+<p><strong>4. What kind of packet is packet number 1400?</strong></p>
+<p>NTP, Version 3, client request.</p>
+<p><img src="assets/lab09/image6.png" style="width:6.25in;height:4.27083in" /></p>
+<p><strong>5. What is the reference time stamp of packet number 1404?</strong></p>
+<p>May 8, 2012 13:19:38.163578891 UTC.</p>
+<p><img src="assets/lab09/image7.png" style="width:6.25in;height:4.29167in" /></p>
+<p><strong>6. Export app_logo.png and find the MD5 hash of the file.</strong></p>
+<p>MD5: 43DD661754BA7A3B75F34999B3F54181</p>
+<p><img src="assets/lab09/image8.png" style="width:4.6875in;height:0.73958in" /></p>
+<p><strong>7. Export SD-Booster-v1-eng.html and then record the email and Twitter contacts in the document.</strong></p>
+<p>Email: daniel.mehrmann@gmx.de Twitter: twitter.com/akusari</p>
+<p><img src="assets/lab09/image9.png" style="width:5.20833in;height:0.29167in" /></p>
+<h2>Tools Used</h2>
+<ul>
+<li>hping3</li>
+<li>Wireshark</li>
+</ul>
+<div class="src">Original file: <a href="Lab-09-Ethical-Hacking-Protocols.docx">Lab-09-Ethical-Hacking-Protocols.docx</a> (Word .docx)</div>
+  </div>
+</div>
+</body>
+</html>

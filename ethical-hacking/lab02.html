@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lab 2 - Footprinting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="../site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../index.html">&larr; Portfolio</a>
+    <div class="byline">Ethical Hacking</div>
+    <h1 class="title">Lab 2 - Footprinting</h1>
+    <div class="meta">
+      <span><strong>Student</strong> Maxwell King</span>
+      <span><strong>Environment</strong> Kali / Metasploitable3 (VirtualBox)</span>
+    </div>
+  </header>
+
+  <div class="card violet">
+<p>This lab was footprinting: gathering public information on a target without touching it directly. I picked Home Depot and worked through nslookup, WHOIS lookups, Google searches and dorks, their SEC filing, and their robots.txt file to see how much you can learn about a company before ever scanning anything.</p>
+<p><strong>1. Perform an nslookup of homedepot.com and record the IP addresses returned.</strong></p>
+<p>homedepot.com resolves to 35.201.95.83</p>
+<p>www.homedepot.com resolves to 23.217.78.138</p>
+<p><strong>2. Do a WHOIS lookup for homedepot.com by the IP addresses returned in the previous question.</strong></p>
+<p>A WHOIS lookup of 35.201.95.83 returns Google LLC. The IP falls in the GOOGLE-CLOUD range (35.192.0.0/12, NetHandle NET-35-192-0-0-1).</p>
+<p>Org address: 1600 Amphitheatre Parkway, Mountain View, CA 94043.</p>
+<p>The IP belongs to Google Cloud, not Home Depot directly.</p>
+<p><strong>3. Perform the same operations as in question 2 using domaintools.com.</strong></p>
+<p>Domain WHOIS via domaintools.com for homedepot.com returns:</p>
+<p>Registrar: CSC Corporate Domains, Inc.</p>
+<p>Registered: August 4, 1992</p>
+<p>Expires: August 3, 2026</p>
+<p>Registrant Org: Homer TLC, Inc.</p>
+<p>Registrant Address: 2455 Paces Ferry Road NW, Atlanta, GA 30339, US</p>
+<p>Phone: +1.7704338211</p>
+<p>Name Servers: a1-27.akam.net, a3-64.akam.net, a6-65.akam.net, a7-66.akam.net, a16-66.akam.net, a18-67.akam.net</p>
+<p>Status: clientTransferProhibited, serverDeleteProhibited, serverTransferProhibited, serverUpdateProhibited</p>
+<p><strong>4. Compare the returned results from questions 2 and 3 and record the differences you find, if any.</strong></p>
+<ul>
+<li><p>Q2 (IP WHOIS) returns Google LLC because the IP is hosted on Google Cloud.</p></li>
+<li><p>Q3 (domain WHOIS) returns Homer TLC, Inc., a Home Depot subsidiary that holds the domain.</p></li>
+<li><p>The two queries hit different registries (ARIN for IPs, Verisign/CSC for domains) and return different information.</p></li>
+<li><p>Q3 also shows registrar-level transfer, delete, and update locks that do not appear in Q2.</p></li>
+</ul>
+<p><strong>5. Perform a Google search of the URL homedepot.com. Record the first five links.</strong></p>
+<p>1. https://www.homedepot.com/ (main retail site)</p>
+<p>2. https://www.homedepot.com/c/myaccount (My Account portal)</p>
+<p>3. https://corporate.homedepot.com/ (corporate site)</p>
+<p>4. https://www.homedepot.com/l/ (store finder)</p>
+<p>5. https://careers.homedepot.com/ (careers portal)</p>
+<p><strong>6. Perform the following Google search: filetype:pdf pdf site:homedepot.com</strong></p>
+<p>Sample results returned:</p>
+<p>Product catalog PDFs at homedepot.com/catalog/pdfImages/</p>
+<p>Appliance repair manuals at appliancerepair.homedepot.com/assets/manuals/</p>
+<p>SEC 10-K filings at ir.homedepot.com</p>
+<p>The search also surfaces the appliancerepair subdomain, which does not appear in normal search results.</p>
+<p><strong>7. Perform a Google search using one of the directives covered in the chapter.</strong></p>
+<p>Query used: intitle:"index of" site:homedepot.com</p>
+<p>No exposed directory listings were returned, so Home Depot has directory browsing disabled on their web servers.</p>
+<p><strong>8. Find the company's latest 10-K filing. Record their corporate phone number and address here.</strong></p>
+<p>Corporate Address: 2455 Paces Ferry Road, Atlanta, Georgia 30339</p>
+<p>Corporate Phone: (770) 433-8211</p>
+<p>Source: Home Depot Q4 2024 10-K filed with the SEC.</p>
+<p><strong>9. Go to Google Maps and use the corporate address to find and capture a map of the location here.</strong></p>
+<p>Address: 2455 Paces Ferry Road, Atlanta, GA 30339</p>
+<p><img src="assets/lab02/image1.png" style="width:5in;height:4.39583in" /></p>
+<p><strong>10. Find the executive team. Record the names of the insider roster here.</strong></p>
+<p>Source: corporate.homedepot.com/page/home-depot-leadership-0</p>
+<p>Ted Decker, Chair, President &amp; Chief Executive Officer</p>
+<p>Ann-Marie Campbell, Senior Executive Vice President</p>
+<p>Billy Bastek, EVP, Merchandising</p>
+<p>Jordan Broggi, EVP, Customer Experience and President, Online</p>
+<p>Angie Brown, EVP &amp; Chief Information Officer</p>
+<p>John Deaton, EVP, Supply Chain &amp; Product Development</p>
+<p>Richard McPhail, EVP &amp; Chief Financial Officer</p>
+<p>Teresa Wynn Roseborough, EVP, General Counsel &amp; Corporate Secretary</p>
+<p>Michael Rowe, EVP, Pro</p>
+<p>Stephanie Smith, EVP, Human Resources</p>
+<p>Molly Battin, SVP &amp; Chief Marketing Officer</p>
+<p>Deepak Arora, SVP, Technology</p>
+<p><strong>11. Look up one of the people from the executive team. Record a previous place of employment and the URL you got the information from here.</strong></p>
+<p>Executive: Ted Decker (Chair, President &amp; CEO)</p>
+<p>Previous employer: Kimberly-Clark Corporation, in business development, strategic planning, and finance positions. He also worked at Scott Paper Co. and earlier at PNC Bank.</p>
+<p>URL: https://corporate.homedepot.com/bio/ted-decker-chair-president-chief-executive-officer</p>
+<p><strong>12. Retrieve the robots.txt file from homedepot.com and record it here.</strong></p>
+<p>URL: https://www.homedepot.com/robots.txt</p>
+<p># robots.txt for https://www.homedepot.com/</p>
+<p>User-agent: *</p>
+<p>Disallow: /*SiteMapView*</p>
+<p>Disallow: /*Navigation?Ns=P_Topseller_Sort|style=List*</p>
+<p>Disallow: /*Navigation?Ns=P_Topseller_Sort|style=A*</p>
+<p>Disallow: /*CheckoutSignIn*</p>
+<p>Disallow: /*OrderItemUpdate*</p>
+<p>Disallow: /*THDLogon*</p>
+<p>Disallow: /*ShippingMethod*</p>
+<p>Disallow: /*OrderItemDisplayViewShiptoAssoc*</p>
+<p>Disallow: /*DeliveryCalendar*</p>
+<p>Disallow: /*OrderItemAdd*</p>
+<p>Disallow: /*MoreViewsPage*</p>
+<p>Disallow: /*Search?*</p>
+<p>Disallow: /*NCNI-5*</p>
+<p>Disallow: /*recordCompareList*</p>
+<p>Disallow: /*PLP_Overlay*</p>
+<p>Disallow: /*Ntt-*</p>
+<p>Disallow: /*Ntk-*</p>
+<p>Disallow: /*AjaxNavigation*</p>
+<p>Disallow: /*Fragments/</p>
+<p>Disallow: /s/</p>
+<p>Disallow: /p/qv/</p>
+<p>Disallow: /*OnlineAccount*</p>
+<p>Disallow: /*mycart*</p>
+<p>Disallow: /*mycheckout*</p>
+<p>Disallow: /*usebeta*</p>
+<p>Disallow: /canvas/</p>
+<p>Disallow: /pep/</p>
+<p>Disallow: /auth/view/signin?redirect=*</p>
+<p>Disallow: /auth/view/createaccount?redirect=*</p>
+<p>Disallow: /clickstream-producer/v1/publish</p>
+<p>Disallow: /l/search/*</p>
+<p>Disallow: /l/detail/*</p>
+<p>Disallow: /b/Featured-Products*</p>
+<p>Disallow: /compare?*</p>
+<p>Disallow: /schedule-a-measure/</p>
+<p>Disallow: /services/*/reviews/page/*</p>
+<p>Allow: /services/*/reviews/page/1$</p>
+<p>Disallow: /e/</p>
+<p>Disallow: /custom-blinds/Configurator*</p>
+<p>Disallow: /cart$</p>
+<p>Disallow: /cart/</p>
+<p>Disallow: /cart*</p>
+<p>Disallow: /checkout*</p>
+<p>Disallow: /order-confirmation*</p>
+<p>Disallow: /customer/account/v1/citi/renderFormParameters</p>
+<p>Allow: /s/*?CI-5</p>
+<p>Sitemap: https://www.homedepot.com/sitemap/main.xml</p>
+<h2>Tools Used</h2>
+<ul>
+<li>nslookup</li>
+<li>WHOIS</li>
+<li>DomainTools</li>
+<li>Google search operators</li>
+<li>Google Maps</li>
+</ul>
+<div class="src">Original file: <a href="Lab-02-Footprinting.docx">Lab-02-Footprinting.docx</a> (Word .docx)</div>
+  </div>
+</div>
+</body>
+</html>

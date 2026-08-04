@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lab 13 - IoT Devices</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="../site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../index.html">&larr; Portfolio</a>
+    <div class="byline">Ethical Hacking</div>
+    <h1 class="title">Lab 13 - IoT Devices</h1>
+    <div class="meta">
+      <span><strong>Student</strong> Maxwell King</span>
+      <span><strong>Environment</strong> Kali / Metasploitable3 (VirtualBox)</span>
+    </div>
+  </header>
+
+  <div class="card violet">
+<p>This lab was an audit of my own home network instead of a lab VM: what IoT devices are on it, how they're configured, and what's actually at risk if one of them gets compromised.</p>
+<h2>Discover and Investigate IoT Devices</h2>
+<p><strong>List the IoT devices on the network.</strong></p>
+<p>My home network has a Samsung smart TV, an Amazon Echo, Amazon Echo Dot v3 and an Amazon Smart Plug.</p>
+<p><strong>Review the configuration of discovered devices.</strong></p>
+<p>All four devices connect to my home Wi-Fi network through my eero router. The eero system has two mesh points on the network as well.</p>
+<p><strong>Does the device have the latest firmware?</strong></p>
+<p>The Echo and Echo Dot update their firmware automatically over Wi-Fi, so they should be running the newest version by default. The smart TV also checks for firmware updates automatically when connected to Wi-Fi.</p>
+<p><strong>What accounts and services are on the device?</strong></p>
+<p>The Echo devices are tied to our Amazon account and can connect to third party skills for music streaming and smart home control. The smart TV isn’t tied to an accounts however, the apps installed for services like Netflix and YouTube are.</p>
+<p><strong>Are there any vulnerabilities associated with the device?</strong></p>
+<p>Yes. I looked this up and found that Echo devices have had Wi-Fi problems before, that let someone nearby break into the connection and see what was being sent, though Amazon fixed it with an update once it was found. There have also been fake Alexa skills built that keep listening even after they pretend to shut off, so they can record what people say without them knowing.</p>
+<p>Source: <a href="https://www.iotforall.com/amazon-echo-security">IoT For All, 2024</a></p>
+<h2>Network Scanning</h2>
+<p><strong>Utilize Nmap to scan the local network for IoT devices.</strong></p>
+<p>I ran nmap -sn 192.168.4.0/24 to sweep my home network. It found 7 devices total: my eero router and a second eero mesh point, the Samsung smart TV, my Echo, Echo Dot, amazon smart plug, and my own PC.</p>
+<p><img src="assets/lab13/image1.png" style="width:5in;height:2.59375in" /></p>
+<p><strong>Identify open ports and services associated with IoT devices.</strong></p>
+<p>I ran nmap -O -sV against one of the Amazon devices at 192.168.4.27. It found two open ports: 1080, running a SOCKS5 proxy service with no authentication configured, and 8888, which showed as tcpwrapped, meaning something is listening but nmap could not identify the exact service.</p>
+<p><strong>Use the -O operator to identify an OS.</strong></p>
+<p>The -O flag ran but nmap could not find an exact OS match for the device. This is pretty common with IoT devices since they often run stripped down or custom embedded operating systems that do not match nmap's fingerprint database.</p>
+<p><img src="assets/lab13/image2.png" style="width:5in;height:2.61458in" /></p>
+<h2>Device Identification and Enumeration</h2>
+<p><strong>Use tools such as MAC address lookup to identify device manufacturers.</strong></p>
+<p>Nmap resolves manufacturer info automatically from the MAC address during a scan, however to verify the Ips I logged into my router which identified them similarly. The results showed:</p>
+<p>- 192.168.4.1 and 192.168.4.23 – eero (home mesh router system)</p>
+<p>- 192.168.4.22 – Samsung Electronics (smart TV)</p>
+<p>- 192.168.4.26, 192.168.4.27, 192.168.4.33 – Amazon Technologies (Echo Pop, Echo Dot and Amazon Smart Plug)</p>
+<p>- 192.168.4.20 – my PC.</p>
+<h2>Tools Used</h2>
+<ul>
+<li>Nmap</li>
+<li>eero app</li>
+</ul>
+<div class="src">Original file: <a href="Lab-13-IoT-Devices.docx">Lab-13-IoT-Devices.docx</a> (Word .docx)</div>
+  </div>
+</div>
+</body>
+</html>

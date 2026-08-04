@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lab 6 - Hacking Linux</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="../site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../index.html">&larr; Portfolio</a>
+    <div class="byline">Ethical Hacking</div>
+    <h1 class="title">Lab 6 - Hacking Linux</h1>
+    <div class="meta">
+      <span><strong>Student</strong> Maxwell King</span>
+      <span><strong>Environment</strong> Kali / Metasploitable3 (VirtualBox)</span>
+    </div>
+  </header>
+
+  <div class="card violet">
+<p>I ran an Nmap scan on the Ubuntu target and found ProFTPD 1.3.5 running on port 21, a version with a known Metasploit exploit. I found the matching module, set the payload to a Python reverse shell, and ran it against the target. Metasploit opened a shell running as www-data. From there I found the site's config file sitting in the web root with the database root password in it.</p>
+
+<h2>Nmap Scan Results</h2>
+<p>An Nmap service scan was run against the Linux VM at 192.168.255.3. The scan confirmed that ProFTPD 1.3.5 is running on port 21, which is the vulnerable version needed for the exploit.</p>
+<img src="assets/lab06/image1.png" alt="Nmap scan results showing ProFTPD 1.3.5 on port 21" />
+
+<h2>Metasploit Search for ProFTP</h2>
+<p>Metasploit was launched and searched for ProFTP modules. The search returned several results. The one matching ProFTPD 1.3.5 is number 16, exploit/unix/ftp/proftpd_modcopy_exec, rated excellent with a disclosure date of 2015-04-22.</p>
+<img src="assets/lab06/image2.png" alt="Metasploit search results for ProFTP modules" />
+
+<h2>Show Options in Metasploit</h2>
+<p>After selecting the exploit and setting the payload to cmd/unix/reverse_python, the options were reviewed. RHOSTS was set to 192.168.255.3, SITEPATH was set to /var/www/html, LHOST was set to 192.168.255.10, and LPORT was set to 4444.</p>
+<img src="assets/lab06/image3.png" alt="Metasploit exploit options set for the ProFTPD exploit" />
+
+<h2>Exploit Execution</h2>
+<p>The exploit was run. Metasploit connected to the FTP server, sent copy commands, executed the PHP payload, and opened a reverse shell. Command shell session 1 was opened from 192.168.255.10:4444 to 192.168.255.3.</p>
+<img src="assets/lab06/image4.png" alt="Metasploit exploit execution opening a reverse shell" />
+
+<h2>config.inc.php with Root Password</h2>
+<p>Once inside the shell, the working directory was confirmed as /var/www/html and the session was running as www-data. After navigating to the phpmyadmin directory and reading the config.inc.php file, the root account credentials were found. The username is root and the password is sploitme.</p>
+<img src="assets/lab06/image5.png" alt="config.inc.php contents showing the database root password" />
+
+<h2>Tools Used</h2>
+<ul>
+<li>Nmap</li>
+<li>Metasploit</li>
+</ul>
+
+<div class="src">Original file: <a href="Lab-06-Hacking-Linux.docx">Lab-06-Hacking-Linux.docx</a> (Word .docx)</div>
+  </div>
+</div>
+</body>
+</html>
