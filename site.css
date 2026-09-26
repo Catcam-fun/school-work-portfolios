@@ -184,3 +184,4 @@ h1.title{
 
 .card.slate{ --card-accent: #3f6d96; }
 .card p.ref{ padding-left:2em; text-indent:-2em; overflow-wrap:anywhere; }
+.card p.section-label{ font-size:12px; margin:-0.2em 0 0.6em; }

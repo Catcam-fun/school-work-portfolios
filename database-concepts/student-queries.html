@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Student Records Queries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="../site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../index.html">&larr; Portfolio</a>
+    <div class="byline">Database Concepts</div>
+    <h1 class="title">Student Records Queries</h1>
+    <div class="meta">
+      <span><strong>Student</strong> Maxwell King</span>
+      <span><strong>Course</strong> COP 2937</span>
+      <span><strong>Term</strong> Summer 2026</span>
+    </div>
+  </header>
+
+  <div class="card red">
+<p class="section-label">Week 8 · Submitted July 4</p>
+<p>This assignment used a prebuilt student records database (<code>Tutorial1</code>) with three tables: <code>Student</code>, <code>Courses</code>, and <code>Schedule</code>, which links students to the courses they took and their grades. The work was writing five SQL queries against it. Most use aggregate functions, <code>GROUP BY</code>, and <code>WHERE</code> clauses that combine more than one condition.</p>
+
+<h1 id="schema">Tables</h1>
+<table>
+<thead><tr><th>Table</th><th>Fields</th></tr></thead>
+<tbody>
+<tr><td><code>Student</code></td><td>StudentID, FirstName, MiddleInitial, LastName, DateOfBirth, GradePointAverage, Major, CreditsEarned, Probation, USCitizen, Class</td></tr>
+<tr><td><code>Courses</code></td><td>CourseID, Title, Description, Credits</td></tr>
+<tr><td><code>Schedule</code></td><td>ScheduleID, StudentID, Course ID, Grade</td></tr>
+</tbody>
+</table>
+
+<h1 id="queries">Queries</h1>
+
+<h2>1. Average GPA by Major</h2>
+<pre><code>SELECT Major, AVG(GradePointAverage) AS AverageGPA
+FROM Student
+GROUP BY Major;</code></pre>
+<table>
+<thead><tr><th>Major</th><th>AverageGPA</th></tr></thead>
+<tbody>
+<tr><td>Biology</td><td>3.54</td></tr>
+<tr><td>Business</td><td>3.27</td></tr>
+<tr><td>Chemistry</td><td>3.50</td></tr>
+<tr><td>Mechanical Engineering</td><td>3.40</td></tr>
+<tr><td>Nutrition</td><td>3.70</td></tr>
+<tr><td>Psychology</td><td>2.85</td></tr>
+<tr><td>Sociology</td><td>2.00</td></tr>
+</tbody>
+</table>
+
+<h2>2. Total Credits by Major</h2>
+<pre><code>SELECT Major, SUM(CreditsEarned) AS TotalCredits
+FROM Student
+GROUP BY Major;</code></pre>
+<table>
+<thead><tr><th>Major</th><th>TotalCredits</th></tr></thead>
+<tbody>
+<tr><td>Biology</td><td>96</td></tr>
+<tr><td>Business</td><td>196</td></tr>
+<tr><td>Chemistry</td><td>96</td></tr>
+<tr><td>Mechanical Engineering</td><td>78</td></tr>
+<tr><td>Nutrition</td><td>30</td></tr>
+<tr><td>Psychology</td><td>216</td></tr>
+<tr><td>Sociology</td><td>90</td></tr>
+</tbody>
+</table>
+
+<h2>3. Business Majors Who Are Not U.S. Citizens</h2>
+<pre><code>SELECT *
+FROM Student
+WHERE Major = "Business" AND USCitizen = False;</code></pre>
+<p>Returns two students: Todd Boyle and Ann Kidd.</p>
+
+<h2>4. Students on Probation Who Are Not U.S. Citizens</h2>
+<pre><code>SELECT *
+FROM Student
+WHERE Probation = True AND USCitizen = False;</code></pre>
+<p>Returns one student: Todd Boyle, a Business major.</p>
+
+<h2>5. Total Credits for Students with a GPA from 3.0 to 3.5</h2>
+<pre><code>SELECT SUM(CreditsEarned) AS TotalCredits
+FROM Student
+WHERE GradePointAverage BETWEEN 3.0 AND 3.5;</code></pre>
+<p>Returns 351 credits. <code>BETWEEN</code> is inclusive, so students with exactly a 3.0 or a 3.5 are counted.</p>
+
+<div class="src">Original file: <a href="Tutorial1.accdb">Tutorial1.accdb</a> (Access database)</div>
+  </div>
+</div>
+</body>
+</html>

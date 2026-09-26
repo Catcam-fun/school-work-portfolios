@@ -18,26 +18,40 @@
     <div class="meta">
       <span><strong>Student</strong> Maxwell King</span>
       <span><strong>Course</strong> COP 2937</span>
-      <span><strong>Term</strong> Spring 2026</span>
+      <span><strong>Term</strong> Summer 2026</span>
     </div>
   </header>
 
   <div class="card red">
-<p>This is a database I built up week by week in Database Concepts, working through a car dealership system called Wallingford Motors. Each week added something: a new table, a new query, a form or a report, working toward a system that tracks customers, their contact history, salespeople, and vehicle inventory. It's more a running record of the semester than one finished project, so this page walks through it in the order the pieces were added.</p>
+<p>This is a database I built up week by week in Database Concepts, working through a car dealership system called Wallingford Motors. Each assignment picked up the previous week's file and added to it: a new table, a new query, a form or a report. By the end it tracks customers, their contact history, salespeople, and vehicle inventory. Each section below is one submission, and each links the Access file exactly as it was turned in that week.</p>
 
-<h1 id="tables">Starting Tables: Customers and Contacts</h1>
-<p>The first version held three tables. <code>Customer</code> stores who the customer is, <code>Contact</code> logs every phone call, email, and meeting with that customer, and <code>Phone_Number</code> lets one customer have several numbers on file (home, cell, fax) instead of cramming them into a single field.</p>
+<h1 id="week-1">Week 1: Getting Started with Microsoft Access</h1>
+<p class="section-label">Submitted May 24</p>
+<p>The first version was a single <code>Customer</code> table with everything in it, including a <code>Phone</code> and a <code>Fax</code> field. On top of that table I built the <strong>WMCRM Customer Data Form</strong> for entering and editing customers one at a time, and the <strong>Wallingford Motors Customer Report</strong> for a printable customer list.</p>
 <table>
-<thead><tr><th>Table</th><th>Fields</th><th>Notes</th></tr></thead>
+<thead><tr><th>Table</th><th>Fields</th></tr></thead>
 <tbody>
-<tr><td><code>Customer</code></td><td>CustomerID, LastName, FirstName, Address, City, State, ZIP, EmailAddress, NickName</td><td>NickName was added later to link each customer to a salesperson.</td></tr>
-<tr><td><code>Contact</code></td><td>ContactID, CustomerID, ContactDate, ContactType, Remarks</td><td>Many contacts per customer.</td></tr>
-<tr><td><code>Phone_Number</code></td><td>CustomerID, PhoneNumber, PhoneType</td><td>Many numbers per customer.</td></tr>
+<tr><td><code>Customer</code></td><td>CustomerID, LastName, FirstName, Address, City, State, ZIP, Phone, Fax, EmailAddress</td></tr>
 </tbody>
 </table>
+<p class="fallback-link">File: <a href="WMCRM-Week1.accdb">WMCRM-Week1.accdb</a></p>
 
-<h1 id="queries">Queries</h1>
-<p>The first set of queries was built in Access's query designer (QBE) and moves from basic filtering to joined, parameterized reports.</p>
+<h1 id="week-2">Week 2: The Relational Model</h1>
+<p class="section-label">Submitted May 27</p>
+<p>Week 2 applied the relational model to that single table. A customer can have more than one phone number, so <code>Phone</code> and <code>Fax</code> came out of <code>Customer</code> and moved into their own <code>Phone_Number</code> table with a <code>PhoneType</code> column. A new <code>Contact</code> table logs every call, email, and meeting with a customer. Both tables link back to <code>Customer</code> through <code>CustomerID</code> in one-to-many relationships, and the form and report were updated to match.</p>
+<table>
+<thead><tr><th>Table</th><th>Fields</th><th>Relationship</th></tr></thead>
+<tbody>
+<tr><td><code>Customer</code></td><td>CustomerID, LastName, FirstName, Address, City, State, ZIP, EmailAddress</td><td>Parent</td></tr>
+<tr><td><code>Contact</code></td><td>ContactID, CustomerID, ContactDate, ContactType, Remarks</td><td>Many contacts per customer</td></tr>
+<tr><td><code>Phone_Number</code></td><td>CustomerID, PhoneNumber, PhoneType</td><td>Many numbers per customer</td></tr>
+</tbody>
+</table>
+<p class="fallback-link">File: <a href="WMCRM-Week2.accdb">WMCRM-Week2.accdb</a></p>
+
+<h1 id="week-3">Week 3: Structured Query Language (SQL) Basics</h1>
+<p class="section-label">Submitted June 3</p>
+<p>Week 3 was the first SQL. The queries start with a plain <code>SELECT *</code>, then move to filtering and sorting, a join, and a parameter query. They were built in both SQL view and Access's query designer (QBE).</p>
 
 <h2>Filtering and Sorting</h2>
 <p>Pull customers past a certain ID, sorted by last name in reverse order.</p>
@@ -84,11 +98,8 @@ WHERE
 ORDER BY
     Contact.ContactDate;</code></pre>
 
-<h1 id="customer-form">Customer Data Form and Report</h1>
-<p>Next came the front end. The <strong>WMCRM Customer Data Form</strong> gives a salesperson a single screen to look up and edit a customer's record without opening the raw table, and the <strong>Wallingford Motors Customer Report</strong> formats the customer list for printing.</p>
-
-<h1 id="salesperson">Adding Salespeople with SQL</h1>
-<p>The <code>SALESPERSON</code> table was created with a SQL <code>CREATE TABLE</code> statement instead of the table designer. Each salesperson is identified by a nickname, which became the primary key.</p>
+<h2>Creating the SALESPERSON Table</h2>
+<p>The last query of the week used SQL DDL rather than the table designer to create a <code>SALESPERSON</code> table. Each salesperson is identified by a nickname, which is the primary key.</p>
 <pre><code>CREATE TABLE SALESPERSON(
   NickName       Char(35)     NOT NULL,
   LastName       Char(25)     NOT NULL,
@@ -100,7 +111,7 @@ ORDER BY
   EmailAddress   Varchar(100) NOT NULL,
   CONSTRAINT     SALESPERSON_PK PRIMARY KEY(NickName)
 );</code></pre>
-<p>A <code>NickName</code> column was then added to <code>Customer</code> so every customer is assigned to a salesperson.</p>
+<p>I then added a <code>NickName</code> column to <code>Customer</code> as a foreign key and related the two tables, so every customer is assigned to one salesperson.</p>
 <table>
 <thead><tr><th>NickName</th><th>Name</th><th>Hire Date</th><th>Wage</th><th>Commission</th></tr></thead>
 <tbody>
@@ -109,12 +120,11 @@ ORDER BY
 <tr><td>Tulia</td><td>Tulia Segovia</td><td>08/10/2016</td><td>$25.50</td><td>12.5%</td></tr>
 </tbody>
 </table>
+<p class="fallback-link">File: <a href="WMCRM-Week3.accdb">WMCRM-Week3.accdb</a></p>
 
-<h1 id="vehicles">Vehicle Inventory</h1>
-<p>The last table, <code>VEHICLE</code>, tracks inventory by <code>InventoryID</code>, model (HiStandard, HiLuxury, SUHi), and VIN. Salespeople point to a vehicle through an <code>InventoryID</code> column.</p>
-
-<h1 id="salesperson-contacts">Salesperson Contacts Form and Report</h1>
-<p>With salespeople linked to customers, the final pieces pull all three tables together. This query joins each salesperson to their customers and each customer to their contact history:</p>
+<h1 id="week-4">Week 4: Data Modeling Basics</h1>
+<p class="section-label">Submitted June 14</p>
+<p>With salespeople linked to customers, Week 4 pulled three tables together. This query joins each salesperson to their customers and each customer to their contact history:</p>
 <pre><code>SELECT
     SALESPERSON.NickName,
     SALESPERSON.LastName AS SALESPERSON_LastName,
@@ -132,9 +142,21 @@ FROM
     (SALESPERSON
     INNER JOIN Customer ON SALESPERSON.NickName = Customer.NickName)
     INNER JOIN Contact ON Customer.CustomerID = Contact.CustomerID;</code></pre>
-<p>It drives the <strong>WMCRM Salesperson Contacts Report</strong>, which groups every customer contact under the salesperson responsible for it. The <strong>WMCRM Salesperson Contacts Form</strong> shows the same data as a main form with two linked subforms: pick a salesperson, see their customers in the <em>Customer Data</em> subform, and the <em>Contact Data</em> subform follows whichever customer is selected.</p>
+<p>It drives the <strong>WMCRM Salesperson Contacts Report</strong>, which groups every customer contact under the salesperson responsible for it. The <strong>WMCRM Salesperson Contacts Form</strong> shows the same data on screen as a main form with two linked subforms: pick a salesperson, see their customers in the <em>Customer Data</em> subform, and the <em>Contact Data</em> subform follows whichever customer is selected.</p>
+<p class="fallback-link">File: <a href="WMCRM-Week4.accdb">WMCRM-Week4.accdb</a></p>
 
-<div class="src">Original file: <a href="WMCRM.accdb">WMCRM.accdb</a> (Access database)</div>
+<h1 id="week-7">Week 7: Database Design Basics</h1>
+<p class="section-label">Submitted June 27</p>
+<p>The last addition was vehicle inventory. A new <code>VEHICLE</code> table tracks each car by <code>InventoryID</code>, model (HiStandard, HiLuxury, SUHi), and VIN. <code>SALESPERSON</code> gained an <code>InventoryID</code> foreign key, and a relationship between the two tables ties each salesperson to a vehicle.</p>
+<table>
+<thead><tr><th>Table</th><th>Fields</th></tr></thead>
+<tbody>
+<tr><td><code>VEHICLE</code></td><td>InventoryID, Model, VIN</td></tr>
+<tr><td><code>SALESPERSON</code></td><td>NickName, LastName, FirstName, HireDate, WageRate, CommissionRate, OfficePhone, EmailAddress, <strong>InventoryID</strong></td></tr>
+</tbody>
+</table>
+<p>That leaves the final schema at five tables: <code>Customer</code>, <code>Contact</code>, <code>Phone_Number</code>, <code>SALESPERSON</code>, and <code>VEHICLE</code>.</p>
+<p class="fallback-link">File: <a href="WMCRM-Week7.accdb">WMCRM-Week7.accdb</a> (final version)</p>
 
   </div>
 </div>
