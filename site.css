@@ -181,3 +181,6 @@ h1.title{
   color:#8a5a1e;
   margin:0 0 4px;
 }
+
+.card.slate{ --card-accent: #3f6d96; }
+.card p.ref{ padding-left:2em; text-indent:-2em; overflow-wrap:anywhere; }
