@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Maxwell King — Coursework Index</title>
-<meta name="description" content="Coursework portfolio index for Maxwell King — Architecting Operating System Security and Digital Forensics." />
+<title>Maxwell King — Portfolio</title>
+<meta name="description" content="Portfolio of Maxwell King — BSIS Senior Capstone, Architecting Operating System Security, Digital Forensics, Database Concepts, and Ethical Hacking." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,6 +20,7 @@
     --teal-bright:#4faaa0;
     --stamp-red:#9c3b3b;
     --violet:#6a5a94;
+    --slate:#3f6d96;
     --line: rgba(236,228,208,0.14);
   }
   *{box-sizing:border-box;}
@@ -95,6 +96,101 @@
     font-weight:500;
   }
 
+  .about{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:34px;
+    padding:44px 0 40px;
+    border-bottom:1px solid var(--line);
+  }
+  @media (max-width:640px){
+    .about{grid-template-columns:1fr; gap:22px;}
+  }
+  .portrait{
+    position:relative;
+    width:150px; height:150px;
+    border-radius:50%;
+    overflow:hidden;
+    background:var(--ink-soft);
+    border:2px solid var(--amber);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .portrait img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+  }
+  .portrait .initials{
+    font-family:'Fraunces',serif;
+    font-size:2.6rem;
+    color:var(--amber-bright);
+  }
+  .section-kicker{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--amber-bright);
+    margin-bottom:12px;
+  }
+  .about-body > p{
+    max-width:64ch;
+    font-size:1rem;
+    line-height:1.65;
+    color:#d6cfba;
+    margin:0 0 14px;
+  }
+  .about-links{font-family:'IBM Plex Mono',monospace; font-size:13px !important;}
+  .about-links a{color:var(--teal-bright); text-decoration:none;}
+  .about-links a:hover{text-decoration:underline;}
+
+  details.bio{
+    margin-top:22px;
+    border-top:1px solid var(--line);
+    padding-top:16px;
+  }
+  details.bio summary{
+    cursor:pointer;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--teal-bright);
+    list-style:none;
+  }
+  details.bio summary::-webkit-details-marker{display:none;}
+  details.bio summary::before{content:"+ "; }
+  details.bio[open] summary::before{content:"− "; }
+  details.bio summary:hover{text-decoration:underline;}
+  .bio-text{
+    margin-top:20px;
+    background:var(--paper);
+    color:#26241c;
+    border-radius:3px;
+    border-top:5px solid var(--amber);
+    padding:32px 36px;
+    line-height:1.7;
+  }
+  @media (max-width:640px){ .bio-text{padding:24px 20px;} }
+  .bio-text h3{
+    font-family:'Fraunces',serif;
+    font-weight:560;
+    font-size:1.4rem;
+    margin:0 0 14px;
+    color:#1a1a1a;
+  }
+  .bio-text h4{
+    font-family:'Fraunces',serif;
+    font-weight:560;
+    font-size:1.05rem;
+    margin:28px 0 8px;
+    padding-top:16px;
+    border-top:1px solid #d9cfb2;
+  }
+  .bio-text p{margin:0 0 1em; font-size:0.98rem;}
+  .bio-text p.ref{padding-left:2em; text-indent:-2em; font-size:0.9rem; overflow-wrap:anywhere;}
+  .bio-text a{color:#8a5a1e;}
+
   .files{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
@@ -124,6 +220,7 @@
   .folder.systems{--tab-color:var(--teal);}
   .folder.database{--tab-color:var(--stamp-red);}
   .folder.hacking{--tab-color:var(--violet);}
+  .folder.capstone{--tab-color:var(--slate);}
 
   .folder .tab{
     font-family:'IBM Plex Mono',monospace;
@@ -236,6 +333,7 @@
 
   @media (prefers-reduced-motion: reduce){
     .folder, .open-btn, ul.exhibits a{transition:none;}
+    html{scroll-behavior:auto;}
   }
 </style>
 </head>
@@ -247,31 +345,73 @@
 
 <div class="wrap">
   <header class="top">
-    <div class="byline">Coursework</div>
-    <h1 class="hero">My coursework.</h1>
-    <p class="sub">These are portfolios from classes while obtaining my cybersecurity degree at USF. Click into either one to look through the labs, papers, and working documents.</p>
+    <div class="byline">Portfolio</div>
+    <h1 class="hero">My portfolio.</h1>
+    <p class="sub">This is work from my classes while earning my Information Science degree at USF. Click into any folder to look through the labs, papers, and working documents.</p>
     <div class="name-tag">Maintained by <strong>Maxwell King</strong> · <a href="https://github.com/Catcam-fun" style="color:inherit;">github.com/Catcam-fun</a></div>
   </header>
 
+  <section class="about" id="about">
+    <div class="portrait">
+      <img src="assets/profile.jpg" alt="Maxwell King" onerror="this.remove()" />
+      <span class="initials" aria-hidden="true">MK</span>
+    </div>
+    <div class="about-body">
+      <div class="section-kicker">About Me</div>
+      <p>I'm Maxwell King. I'm finishing a Bachelor of Science in Information Science at the University of South Florida with a concentration in Information Security, graduating in December 2026. Before USF I earned an Associate of Arts in Cybersecurity from Hillsborough Community College, and I hold the CompTIA Network+ and Security+ certifications.</p>
+      <p>Outside of class I build things, like a raid-log dashboard with real users and an LLM orchestration harness that taught me more by not working. After graduation I want to work where security overlaps with AI.</p>
+      <p class="about-links"><a href="https://www.linkedin.com/in/maxwell-king-a87a44230/">LinkedIn ↗</a> · <a href="https://github.com/Catcam-fun">GitHub ↗</a></p>
+
+      <details class="bio">
+        <summary>Read my full biography</summary>
+        <div class="bio-text">
+          <h3>Enhanced Biography and Career Goals</h3>
+          <p>When I was eleven, my parents set our home internet to shut off between nine at night and five in the morning. I eventually found that plugging an Ethernet cable directly into the extension router still got me online after everyone had gone to bed. That worked for a while, but then I wanted to understand how the restriction was being enforced, which is how I ended up in the router’s admin settings changing things I had no business changing. Nothing about this was advanced. I was eleven years old with an old consumer router, and my parents weren’t configuration experts either. But what interested me was that the setup worked as long as I used the connection the way they expected. Once I did something different, it couldn’t recognize or respond to what I was doing. I would consider that my introduction to cybersecurity, even though at the time I was mostly concerned with getting back on the computer.</p>
+          <p>I was born in Tucson, Arizona, though I have lived in Tampa almost my entire life. I grew up around Hebrew and Spanish and can still read a fair amount of each, but I wouldn’t call myself fluent. I am finishing a Bachelor of Science in Information Science at the University of South Florida with a concentration in Information Security, graduating in December 2026. Before USF, I earned an Associate of Arts in Cybersecurity from Hillsborough Community College in 2024. Choosing security was rather easy for me because I enjoy having something to figure out, and there isn’t really a point where the field stops giving you new problems. Technology changes, people find different ways to use it, and the policies and tools already in place don’t necessarily account for that. I wanted to work in a field where continuing to learn is part of the work itself.</p>
+          <p>My coursework has covered operating system security, ethical hacking, digital forensics, networking, databases, Java programming, information policy and ethics, and more. Most of this involved hands-on work rather than only learning the terminology. For example, I built virtual lab environments in VirtualBox, ran Kali Linux against Metasploitable targets, imaged drives and recovered files during forensic investigations, and configured Windows Server with Active Directory Domain Services. The tools I work with regularly include Nmap, Metasploit, Wireshark, Autopsy, and Paraben E3. I have programmed in Java and Python, written a limited amount of SQL, and completed both the CompTIA Network+ and Security+ certifications. All of this is documented in my public coursework portfolio below. I find that having to explain what I did is useful for my own understanding, because completing something and being able to explain how it worked aren’t always the same.</p>
+          <p>What I care about more is what I’ve built outside of class. FloorPov.gg is a web dashboard I built with React, Flask, Supabase, and Cloudflare Workers that pulls raid data from the Warcraft Logs API. The problem I wanted to address was that raid leaders often have to go through logs one line at a time to understand what happened during an attempt. My dashboard normalizes that data and aggregates death statistics so they can look at it more easily. It has real users who have sent me feedback, which means I have to consider whether what I built makes sense to someone who wasn’t involved in building it. That has made me think about reliability and usability differently than I did with class projects.</p>
+          <p>Another project was an orchestration harness for large language models, similar to OpenClaw or Hermes. This one did not work the way I intended. Large models can be expensive and struggle to keep track of context during long tasks, so I tried using an Obsidian vault as shared memory and splitting the work between models. Cheaper models would handle simple tasks, while larger models would be used for the work that needed them.</p>
+          <p>The routing worked, however, the part where I wanted the system to correct itself was where I ran into problems. I had the agents evaluate their own output and feed that evaluation into the next attempt. What this meant in practice was that I was relying on the models to tell themselves whether they were doing a good job, without giving them a reliable source to check against. The results got worse because the feedback could reinforce a mistake just as easily as correct it. Having another response that agreed with the first one didn’t actually verify anything. For the meantime I consider this a “failure” but I also don’t consider building it a waste, because it helped me understand something I hadn’t properly addressed in the design. And I will revisit this project in the future.</p>
+          <p>My only formal work experience is in retail. I spent about a year at Lowe’s Home Improvement as a home decor associate, stocking merchandise, handling returns, and helping customers find what they needed. This clearly wasn’t a technical job, but I still value the experience of working within a team and helping people who were frustrated or unsure of what to ask for. Being familiar with something doesn’t automatically mean I can explain it to someone else, and retail gave me practice doing that with people who had different levels of understanding.</p>
+          <p>After graduation, I want to work where security overlaps with AI. The U.S. Bureau of Labor Statistics reports that information security analysts earned a median annual wage of $129,180 in May 2025, with employment projected to grow 21 percent from 2025 to 2035 (U.S. Bureau of Labor Statistics, 2026). However, I’m more interested in the specific skills employers need than the growth number by itself. The 2025 ISC2 Cybersecurity Workforce Study found that 95 percent of respondents reported at least one skills gap on their team, with AI security among the most needed areas (ISC2, 2025). To me, that means I need to be specific about what I’m learning and have work that demonstrates it, rather than assume that being interested in cybersecurity is enough.</p>
+          <p>In the near future, I plan to study and take CompTIA’s SecAI+, which launched this year and covers securing AI systems, using AI in security operations, and the governance around both. I believe this is the most direct next step from the Network+ and Security+ certifications I’ve already completed, especially given what I’ve been working on independently. I’m not planning on graduate school right away. I would prefer to get into the field and continue learning while working, although I’m not ruling out another degree later.</p>
+          <p>Security changes too fast for anyone to be finished learning, which is most of the reason I picked it. I expect to keep building things, keep writing down what happened when I did, and keep being wrong about some of it.</p>
+          <h4>References</h4>
+          <p class="ref">ISC2. (2025, December 4). <em>2025 ISC2 cybersecurity workforce study</em>. <a href="https://www.isc2.org/Insights/2025/12/2025-ISC2-Cybersecurity-Workforce-Study">https://www.isc2.org/Insights/2025/12/2025-ISC2-Cybersecurity-Workforce-Study</a></p>
+          <p class="ref">U.S. Bureau of Labor Statistics. (2026, August 27). Information security analysts. <em>Occupational Outlook Handbook</em>. <a href="https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm">https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm</a></p>
+        </div>
+      </details>
+    </div>
+  </section>
+
   <section class="files">
+    <article class="folder capstone">
+      <div class="stamp">SENIOR<br/>CAP<br/>STONE</div>
+      <div class="tab"><span>CIS 4361</span><span class="n">FILE NO. 01</span></div>
+      <h2>BSIS Senior Capstone</h2>
+      <p class="desc">Final-semester work for the Information Science degree, starting with a project management plan for a university-wide software license database.</p>
+      <ul class="exhibits">
+        <li><a href="senior-capstone/case-study-plan.html"><span class="idx">01</span> Case Study Plan — Software Database for an Educational Institution</a></li>
+      </ul>
+      <a class="open-btn" href="senior-capstone/case-study-plan.html">Open File →</a>
+    </article>
+
     <article class="folder systems">
       <div class="stamp">SEC<br/>+<br/>OPS</div>
-      <div class="tab"><span>CIS 3367</span><span class="n">FILE NO. 01</span></div>
+      <div class="tab"><span>CIS 3367</span><span class="n">FILE NO. 02</span></div>
       <h2>Architecting Operating System Security</h2>
-      <p class="desc">Group papers on IoT and OS security, a living VM build document, personal Security+/TryHackMe cert work, and independent learning objectives.</p>
+      <p class="desc">Group papers on IoT and OS security, plus a living VM build document tracking the class lab environment.</p>
       <ul class="exhibits">
         <li><a href="architecting-os-security/vm-class-work_living-vm-document.html"><span class="idx">01</span> VM Class Work — Living VM Document</a></li>
         <li><a href="architecting-os-security/group-projects_paper-1-internet-of-things-security-operating-systems-and-system-design.html"><span class="idx">02</span> Paper 1 — IoT Security, OS &amp; System Design</a></li>
         <li><a href="architecting-os-security/group-projects_paper-2-cybersecurity-standards-in-operating-systems-summary-and-analysis.html"><span class="idx">03</span> Paper 2 — Cybersecurity Standards in OS</a></li>
-        <li><a href="architecting-os-security/personal-project-slash-tryhackme-pre-security-cert-and-sec+-introduction_personal-project-slash-tryhackme-pre-security-cert-and-sec+-introduction.html"><span class="idx">04</span> Personal Project — TryHackMe &amp; Security+</a></li>
-        <li><a href="architecting-os-security/student-learning-objectives-slash-personal-work-documentation_slos-slash-independent-work-documents.html"><span class="idx">05</span> Independent Work — Student Learning Objectives</a></li>
       </ul>
       <a class="open-btn" href="architecting-os-security/vm-class-work_living-vm-document.html">Open File →</a>
     </article>
 
     <article class="folder forensics">
       <div class="stamp">EXHIBIT<br/>ON<br/>FILE</div>
-      <div class="tab"><span>DIGITAL FORENSICS</span><span class="n">FILE NO. 02</span></div>
+      <div class="tab"><span>DIGITAL FORENSICS</span><span class="n">FILE NO. 03</span></div>
       <h2>Digital Forensics</h2>
       <p class="desc">Lab work applying forensic method and legal standard to digital evidence — imaging, recovery, and investigation across Windows, email/chat, and mobile sources.</p>
       <ul class="exhibits">
@@ -287,19 +427,21 @@
 
     <article class="folder database">
       <div class="stamp">DB<br/>DESIGN</div>
-      <div class="tab"><span>COP 2937</span><span class="n">FILE NO. 03</span></div>
+      <div class="tab"><span>COP 2937</span><span class="n">FILE NO. 04</span></div>
       <h2>Database Concepts</h2>
-      <p class="desc">A three-phase relational design project for a doctor's office, plus a semester of weekly SQL and Access practice building a car dealership CRM.</p>
+      <p class="desc">A car dealership CRM built up week by week in Access, ERD exercises in Visio, SQL aggregate queries, and a three-phase relational design project for a doctor's office.</p>
       <ul class="exhibits">
-        <li><a href="database-concepts/doctors-office.html"><span class="idx">01</span> Doctor's Office — Final Project (ERD, Schema, Queries)</a></li>
-        <li><a href="database-concepts/wmcrm.html"><span class="idx">02</span> Wallingford Motors CRM — Weekly Coursework</a></li>
+        <li><a href="database-concepts/wmcrm.html"><span class="idx">01</span> Weeks 1–7 — Wallingford Motors CRM (Weekly Build)</a></li>
+        <li><a href="database-concepts/erd-exercises.html"><span class="idx">02</span> Week 5 — Entity Relationship Diagrams</a></li>
+        <li><a href="database-concepts/student-queries.html"><span class="idx">03</span> Week 8 — Student Records Queries</a></li>
+        <li><a href="database-concepts/doctors-office.html"><span class="idx">04</span> Week 9 — Doctor's Office Final Project (ERD, Schema, Queries)</a></li>
       </ul>
-      <a class="open-btn" href="database-concepts/doctors-office.html">Open File →</a>
+      <a class="open-btn" href="database-concepts/wmcrm.html">Open File →</a>
     </article>
 
     <article class="folder hacking">
       <div class="stamp">ROOT<br/>ACCESS</div>
-      <div class="tab"><span>ETHICAL HACKING</span><span class="n">FILE NO. 04</span></div>
+      <div class="tab"><span>ETHICAL HACKING</span><span class="n">FILE NO. 05</span></div>
       <h2>Ethical Hacking</h2>
       <p class="desc">Hands-on labs in a VirtualBox range (Kali Linux against Metasploitable3 Windows and Ubuntu targets): recon, Metasploit exploitation, password cracking, malware analysis, social engineering, and incident response.</p>
       <ul class="exhibits">
@@ -320,7 +462,7 @@
   </section>
 
   <footer>
-    <span>Updated July 2026</span>
+    <span>Updated September 2026</span>
     <a href="https://github.com/Catcam-fun">View source on GitHub ↗</a>
   </footer>
 </div>

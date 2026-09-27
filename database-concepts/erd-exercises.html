@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Entity Relationship Diagrams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="../site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../index.html">&larr; Portfolio</a>
+    <div class="byline">Database Concepts</div>
+    <h1 class="title">Entity Relationship Diagrams</h1>
+    <div class="meta">
+      <span><strong>Student</strong> Maxwell King</span>
+      <span><strong>Course</strong> COP 2937</span>
+      <span><strong>Term</strong> Summer 2026</span>
+    </div>
+  </header>
+
+  <div class="card red">
+<p class="section-label">Week 5 · Submitted June 21</p>
+<p>These two textbook exercises extend an existing data model for a business that runs seminars, tracks customer contacts, and sells products through invoices. Each exercise adds a new part of the business to the model, drawn as an entity relationship diagram in Visio with primary keys marked on each entity.</p>
+
+<h1 id="exercise-4-40">Exercise 4.40: Consulting Projects</h1>
+<p>This exercise adds consulting work. <code>CONSULTING_PROJECT</code> belongs to a customer and has a description and start and end dates. Hours are logged per project per day in <code>DAILY_PROJECT_HOURS</code>, whose composite key (<code>ProjectID</code>, <code>WorkDate</code>) makes it a weak entity that depends on the project it belongs to.</p>
+<img src="assets/Exercise-4-40.png" alt="ERD for Exercise 4.40 adding CONSULTING_PROJECT and DAILY_PROJECT_HOURS to the customer, seminar, contact, invoice, line item, and product model" />
+<p class="fallback-link">Original file: <a href="Exercise-4-40.vsdx">Exercise-4-40.vsdx</a> (Visio)</p>
+
+<h1 id="exercise-4-41">Exercise 4.41: Supplies Used on Projects</h1>
+<p>This exercise builds on 4.40 by tracking the supplies used on each day of project work. <code>SUPPLY</code> is a catalog of supplies with a description and price. <code>SUPPLY_USAGE</code> resolves the many-to-many relationship between a day of project hours and the supplies used that day. Its key is <code>ProjectID</code>, <code>WorkDate</code>, and <code>SupplyID</code>, and it records the <code>AmountUsed</code>.</p>
+<img src="assets/Exercise-4-41.png" alt="ERD for Exercise 4.41 adding SUPPLY and SUPPLY_USAGE to the Exercise 4.40 model" />
+<p class="fallback-link">Original file: <a href="Exercise-4-41.vsdx">Exercise-4-41.vsdx</a> (Visio)</p>
+
+<p class="fallback-link"><em>The images above were rendered from the Visio files, and the crow's-foot line endings show as plain arrows. The .vsdx originals have the full notation.</em></p>
+  </div>
+</div>
+</body>
+</html>
